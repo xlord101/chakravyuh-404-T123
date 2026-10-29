@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export type AppView = 'landing' | 'learn' | 'lesson' | 'lab' | 'challenges' | 'quiz' | 'dojo' | 'missions' | 'profile';
+export type AppView = 'landing' | 'onboarding' | 'learn' | 'lesson' | 'lab' | 'challenges' | 'quiz' | 'dojo' | 'missions' | 'profile';
 
 export interface ChatMessage {
   id: string;
@@ -8,6 +8,15 @@ export interface ChatMessage {
   text: string;
   hintLevel?: number;
   timestamp: string;
+}
+
+export interface OnboardingState {
+  completed: boolean;
+  answers: Record<string, string>;
+  conceptScore: number;
+  experienceScore: number;
+  recommendedLevel: 'beginner' | 'intermediate';
+  selectedLevel: 'beginner' | 'intermediate';
 }
 
 export interface SparkUserState {
@@ -20,6 +29,7 @@ export interface SparkUserState {
   completedLessons: string[];
   unlockedBadges: string[];
   completedDojoCases: string[];
+  onboarding: OnboardingState;
 }
 
 const STORAGE_KEY = 'sparkpath_state_v1';
@@ -33,7 +43,15 @@ const DEFAULT_USER: SparkUserState = {
   dailyGoalMin: 10,
   completedLessons: [],
   unlockedBadges: ['First Light'],
-  completedDojoCases: []
+  completedDojoCases: [],
+  onboarding: {
+    completed: false,
+    answers: {},
+    conceptScore: 0,
+    experienceScore: 0,
+    recommendedLevel: 'beginner',
+    selectedLevel: 'beginner'
+  }
 };
 
 export const useSparkStore = () => {
@@ -43,7 +61,15 @@ export const useSparkStore = () => {
   const [user, setUser] = useState<SparkUserState>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
-      return saved ? JSON.parse(saved) : DEFAULT_USER;
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return {
+          ...DEFAULT_USER,
+          ...parsed,
+          onboarding: parsed.onboarding || DEFAULT_USER.onboarding
+        };
+      }
+      return DEFAULT_USER;
     } catch {
       return DEFAULT_USER;
     }
@@ -173,6 +199,53 @@ export const useSparkStore = () => {
     }, 600);
   };
 
+  const completeOnboarding = (
+    answers: Record<string, string>,
+    conceptScore: number,
+    experienceScore: number,
+    level: 'beginner' | 'intermediate',
+    startingLessonId: string
+  ) => {
+    setUser((prev) => {
+      const bonusXp = 25;
+      const newXp = prev.xp + bonusXp;
+      return {
+        ...prev,
+        onboarding: {
+          completed: true,
+          answers,
+          conceptScore,
+          experienceScore,
+          recommendedLevel: level,
+          selectedLevel: level
+        },
+        xp: newXp,
+        level: computeLevel(newXp)
+      };
+    });
+    // Navigate directly into recommended lesson or journey
+    navigateTo('lesson', startingLessonId || (level === 'intermediate' ? 'logic-3' : 'logic-1'));
+  };
+
+  const skipOnboarding = () => {
+    setUser((prev) => ({
+      ...prev,
+      onboarding: {
+        completed: true,
+        answers: {},
+        conceptScore: 0,
+        experienceScore: 0,
+        recommendedLevel: 'beginner',
+        selectedLevel: 'beginner'
+      }
+    }));
+    navigateTo('learn');
+  };
+
+  const retakeOnboarding = () => {
+    navigateTo('onboarding');
+  };
+
   return {
     currentView,
     activeLessonId,
@@ -185,6 +258,9 @@ export const useSparkStore = () => {
     addXp,
     completeLesson,
     completeDojoCase,
+    completeOnboarding,
+    skipOnboarding,
+    retakeOnboarding,
     setSparkTutorOpen,
     sendSparkMessage
   };

@@ -19,6 +19,7 @@ export const AppShell = ({
 }: AppShellProps) => {
   const navItems = [
     { view: 'learn' as AppView, label: 'Journey', icon: Compass },
+    { view: 'onboarding' as AppView, label: 'Diagnostic Quiz', icon: Sparkles },
     { view: 'lab' as AppView, label: 'Virtual Lab', icon: Cpu },
     { view: 'dojo' as AppView, label: 'Debug Dojo', icon: Bug },
     { view: 'missions' as AppView, label: 'Missions', icon: Target },
@@ -98,6 +99,24 @@ export const AppShell = ({
             <span style={{ opacity: 0.3 }}>|</span>
             <span style={{ color: '#ffffff', fontWeight: 700 }}>{user.xp} XP</span>
           </div>
+
+          {/* Onboarding Diagnostic Quiz Button */}
+          <button
+            onClick={() => onNavigate('onboarding')}
+            className="btn-tactile-surface hidden sm:flex"
+            style={{
+              fontSize: '11px',
+              padding: '5px 10px',
+              alignItems: 'center',
+              gap: '6px',
+              borderColor: user.onboarding?.completed ? 'var(--color-signal)' : 'var(--color-amber)',
+              color: user.onboarding?.completed ? 'var(--color-signal)' : 'var(--color-amber)'
+            }}
+            title="Take or retake the 6-question diagnostic questionnaire"
+          >
+            <Sparkles size={12} />
+            <span>{user.onboarding?.completed ? `LEVEL: ${(user.onboarding.selectedLevel || user.onboarding.recommendedLevel || 'Beginner').toUpperCase()}` : 'TAKE DIAGNOSTIC'}</span>
+          </button>
 
           {/* Quick Exit to Landing */}
           <button

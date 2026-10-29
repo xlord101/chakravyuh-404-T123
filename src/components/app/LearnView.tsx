@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Cpu, Lock, CheckCircle2, ChevronRight, Play } from 'lucide-react';
+import { Cpu, Lock, CheckCircle2, ChevronRight, Play, Sparkles, Compass } from 'lucide-react';
 import { CURRICULUM_TRACKS } from '../../data/curriculumData';
 import type { Lesson } from '../../data/curriculumData';
 import type { SparkUserState } from '../../store/useSparkStore';
@@ -8,9 +8,10 @@ import type { SparkUserState } from '../../store/useSparkStore';
 interface LearnViewProps {
   user: SparkUserState;
   onSelectLesson: (lessonId: string) => void;
+  onOpenOnboarding?: () => void;
 }
 
-export const LearnView = ({ user, onSelectLesson }: LearnViewProps) => {
+export const LearnView = ({ user, onSelectLesson, onOpenOnboarding }: LearnViewProps) => {
   const [selectedTrackId, setSelectedTrackId] = useState<string>('logic');
   const [activeModalLesson, setActiveModalLesson] = useState<Lesson | null>(null);
 
@@ -18,8 +19,90 @@ export const LearnView = ({ user, onSelectLesson }: LearnViewProps) => {
 
   const isLessonComplete = (id: string) => user.completedLessons.includes(id);
 
+  const onboardingDone = Boolean(user.onboarding?.completed);
+  const currentLevel = user.onboarding?.selectedLevel || user.onboarding?.recommendedLevel || 'beginner';
+
   return (
     <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '32px 20px' }}>
+
+      {/* Adaptive Diagnostic Banner (PRD Section 3 & 4) */}
+      <div
+        style={{
+          background: 'linear-gradient(135deg, rgba(124, 255, 178, 0.05) 0%, rgba(92, 200, 255, 0.03) 100%)',
+          border: '1px solid',
+          borderColor: onboardingDone ? 'rgba(124, 255, 178, 0.3)' : 'rgba(255, 184, 77, 0.4)',
+          borderRadius: '14px',
+          padding: '20px 24px',
+          marginBottom: '28px',
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '16px',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <div
+            style={{
+              width: '42px',
+              height: '42px',
+              borderRadius: '10px',
+              background: onboardingDone ? 'rgba(124, 255, 178, 0.15)' : 'rgba(255, 184, 77, 0.15)',
+              color: onboardingDone ? 'var(--color-signal)' : 'var(--color-amber)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0,
+            }}
+          >
+            {onboardingDone ? <Sparkles size={22} /> : <Compass size={22} />}
+          </div>
+
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+              <span
+                className="chip-tag"
+                style={{
+                  fontSize: '9px',
+                  background: onboardingDone ? 'rgba(124, 255, 178, 0.15)' : 'rgba(255, 184, 77, 0.15)',
+                  color: onboardingDone ? 'var(--color-signal)' : 'var(--color-amber)',
+                  borderColor: onboardingDone ? 'var(--color-signal)' : 'var(--color-amber)',
+                }}
+              >
+                {onboardingDone ? 'ADAPTIVE PATHWAY ACTIVE' : 'PERSONALIZED ONBOARDING AVAILABLE'}
+              </span>
+              <span style={{ fontSize: '12px', fontFamily: 'var(--font-mono)', color: 'var(--color-muted)' }}>
+                {onboardingDone
+                  ? `Level: ${currentLevel === 'intermediate' ? 'Circuit Explorer' : 'Beginner Explorer'}`
+                  : 'Diagnostic (6 Questions)'}
+              </span>
+            </div>
+
+            <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#ffffff', margin: 0 }}>
+              {onboardingDone
+                ? `Calibrated for: ${currentLevel === 'intermediate' ? 'Circuit Explorer (Advanced Diagnostics)' : 'Beginner Explorer (Guided Step-by-Step)'}`
+                : "Let's find your starting point in Electronics & ENTC"}
+            </h3>
+
+            <p style={{ fontSize: '13px', color: 'var(--color-muted)', margin: '4px 0 0 0', lineHeight: 1.4 }}>
+              {onboardingDone
+                ? `Concept score: ${user.onboarding.conceptScore}/6 • Experience score: ${user.onboarding.experienceScore}/9. All curriculum modules remain accessible.`
+                : 'Take our 60-second questionnaire to estimate your level and receive personalized hints.'}
+            </p>
+          </div>
+        </div>
+
+        {onOpenOnboarding && (
+          <button
+            onClick={onOpenOnboarding}
+            className={onboardingDone ? 'btn-tactile-surface' : 'btn-tactile-signal'}
+            style={{ fontSize: '13px', padding: '10px 18px', whiteSpace: 'nowrap' }}
+          >
+            <Sparkles size={14} />
+            <span>{onboardingDone ? 'Retake Diagnostic Quiz' : 'Start 60s Diagnostic →'}</span>
+          </button>
+        )}
+      </div>
 
       {/* Track Selector Bar (PRD 8.2) */}
       <div style={{

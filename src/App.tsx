@@ -10,6 +10,7 @@ import { DebugDojo } from './components/app/DebugDojo';
 import { MissionsView } from './components/app/MissionsView';
 import { ProfileView } from './components/app/ProfileView';
 import { SparkTutorDrawer } from './components/app/SparkTutorDrawer';
+import { NoiseOverlay } from './components/layout/NoiseOverlay';
 import './index.css';
 
 function App() {
@@ -26,17 +27,18 @@ function App() {
     sendSparkMessage
   } = useSparkStore();
 
-  // Lenis smooth scroll active on landing page (PRD 5.2)
+  // Lenis smooth scroll active on landing page (matching Portfolio standard)
   useEffect(() => {
     if (currentView !== 'landing') return;
 
     const lenis = new Lenis({
-      duration: 1.1,
+      duration: 2.0,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
+      gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 1.5,
+      wheelMultiplier: 0.58,
+      touchMultiplier: 1.2,
     });
 
     function raf(time: number) {
@@ -54,6 +56,7 @@ function App() {
 
   return (
     <>
+      <NoiseOverlay />
       {currentView === 'landing' ? (
         /* S1 - S11: Landing Page with Hero Live Circuit, Background Frame Sequence & Story */
         <LandingPage onStartLearning={(view, lessonId) => navigateTo(view || 'learn', lessonId)} />

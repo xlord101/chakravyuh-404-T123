@@ -64,11 +64,11 @@ export const AppShell = ({
           }}>
             <Zap size={16} />
           </div>
-          <span style={{ fontWeight: 800, fontSize: '17px', color: '#ffffff' }}>
-            Spark<span style={{ color: 'var(--color-signal)' }}>Path</span>
+          <span style={{ fontWeight: 800, fontSize: '17px', color: '#ffffff', letterSpacing: '-0.02em' }}>
+            ENI<span style={{ color: 'var(--color-signal)' }}>GMA</span>
           </span>
           <span className="chip-tag chip-tag-signal hidden sm:inline" style={{ fontSize: '9px' }}>
-            GUEST MODE
+            SMART ENTC
           </span>
         </div>
 

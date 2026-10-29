@@ -212,7 +212,7 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
     { id: '01', title: 'Silicon', label: '01 // Overview' },
     { id: '02', title: 'The Problem', label: '02 // Paradox' },
     { id: '03', title: 'Architecture', label: '03 // Engine' },
-    { id: '04', title: 'Pedagogy', label: '04 // 4-Beat Loop' },
+    { id: '04', title: 'Pedagogy', label: '04 // 5-Step Loop' },
     { id: '05', title: 'Live Workspace', label: '05 // Evaluation' },
   ];
 
@@ -834,7 +834,7 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
             }}
           >
             <span className="keynote-pill" style={{ marginBottom: '14px' }}>
-              03 // THE PEDAGOGICAL LOOP
+              03 // THE 5-STEP MASTERY LOOP
             </span>
 
             <h2
@@ -847,7 +847,7 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
                 marginBottom: '16px',
               }}
             >
-              Learn. Build. Break. Fix.
+              Discover. Experiment. Play. Debug. Master.
             </h2>
 
             <p
@@ -855,87 +855,106 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
                 fontSize: '15px',
                 color: '#a1a1aa',
                 lineHeight: 1.6,
-                marginBottom: '24px',
+                marginBottom: '20px',
               }}
             >
-              Passive reading creates the illusion of competence. Enigma enforces a high-retention 4-beat mastery cycle:
+              Passive reading creates the illusion of competence. Enigma enforces a high-retention 5-step interactive mastery cycle:
             </p>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '24px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '22px' }}>
               <div
                 style={{
                   background: 'rgba(255, 255, 255, 0.03)',
                   border: '1px solid rgba(255, 255, 255, 0.06)',
-                  borderRadius: '10px',
-                  padding: '14px',
+                  borderRadius: '8px',
+                  padding: '10px 14px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
                 }}
               >
-                <div className="font-pixel" style={{ fontSize: '10px', color: '#5CC8FF', marginBottom: '6px' }}>
-                  BEAT 01
-                </div>
-                <div style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
-                  Learn (&lt; 90s)
-                </div>
-                <p style={{ fontSize: '11px', color: '#71717a', lineHeight: 1.4 }}>
-                  Atomic visual cards on voltage, gates, or ADC. No boring 40-page textbook PDFs.
-                </p>
+                <span className="font-pixel" style={{ fontSize: '9px', color: '#5CC8FF', minWidth: '65px' }}>
+                  01 DISCOVER
+                </span>
+                <span style={{ fontSize: '12px', color: '#e4e4e7', lineHeight: 1.3 }}>
+                  Visual micro-concepts & clickable component pinouts in under 90s.
+                </span>
               </div>
 
               <div
                 style={{
                   background: 'rgba(255, 255, 255, 0.03)',
                   border: '1px solid rgba(255, 255, 255, 0.06)',
-                  borderRadius: '10px',
-                  padding: '14px',
+                  borderRadius: '8px',
+                  padding: '10px 14px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
                 }}
               >
-                <div className="font-pixel" style={{ fontSize: '10px', color: '#7CFFB2', marginBottom: '6px' }}>
-                  BEAT 02
-                </div>
-                <div style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
-                  Build (Live)
-                </div>
-                <p style={{ fontSize: '11px', color: '#71717a', lineHeight: 1.4 }}>
-                  Drag components, adjust resistance sliders, and write real firmware immediately.
-                </p>
+                <span className="font-pixel" style={{ fontSize: '9px', color: '#7CFFB2', minWidth: '65px' }}>
+                  02 SIMULATE
+                </span>
+                <span style={{ fontSize: '12px', color: '#e4e4e7', lineHeight: 1.3 }}>
+                  Live embedded sandbox: tune resistance, toggle gates & run C++ code.
+                </span>
               </div>
 
               <div
                 style={{
                   background: 'rgba(255, 255, 255, 0.03)',
                   border: '1px solid rgba(255, 255, 255, 0.06)',
-                  borderRadius: '10px',
-                  padding: '14px',
+                  borderRadius: '8px',
+                  padding: '10px 14px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
                 }}
               >
-                <div className="font-pixel" style={{ fontSize: '10px', color: '#FF5C6C', marginBottom: '6px' }}>
-                  BEAT 03
-                </div>
-                <div style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
-                  Break (Faults)
-                </div>
-                <p style={{ fontSize: '11px', color: '#71717a', lineHeight: 1.4 }}>
-                  Injected faults: floating inputs, blown LEDs, or missing pull-down resistors.
-                </p>
+                <span className="font-pixel" style={{ fontSize: '9px', color: '#FFB84D', minWidth: '65px' }}>
+                  03 PLAY
+                </span>
+                <span style={{ fontSize: '12px', color: '#e4e4e7', lineHeight: 1.3 }}>
+                  Mini-games: Gate Predictor, Truth Table Sprint, Component Match.
+                </span>
               </div>
 
               <div
                 style={{
                   background: 'rgba(255, 255, 255, 0.03)',
                   border: '1px solid rgba(255, 255, 255, 0.06)',
-                  borderRadius: '10px',
-                  padding: '14px',
+                  borderRadius: '8px',
+                  padding: '10px 14px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
                 }}
               >
-                <div className="font-pixel" style={{ fontSize: '10px', color: '#FFB84D', marginBottom: '6px' }}>
-                  BEAT 04
-                </div>
-                <div style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
-                  Fix (Dojo XP)
-                </div>
-                <p style={{ fontSize: '11px', color: '#71717a', lineHeight: 1.4 }}>
-                  Probe with virtual multimeter, trace continuity, earn XP, and unlock badges.
-                </p>
+                <span className="font-pixel" style={{ fontSize: '9px', color: '#FF5C6C', minWidth: '65px' }}>
+                  04 DEBUG
+                </span>
+                <span style={{ fontSize: '12px', color: '#e4e4e7', lineHeight: 1.3 }}>
+                  Injected faults (floating inputs, reversed polarity) solved via probe.
+                </span>
+              </div>
+
+              <div
+                style={{
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  border: '1px solid rgba(255, 255, 255, 0.06)',
+                  borderRadius: '8px',
+                  padding: '10px 14px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                }}
+              >
+                <span className="font-pixel" style={{ fontSize: '9px', color: '#a78bfa', minWidth: '65px' }}>
+                  05 MASTER
+                </span>
+                <span style={{ fontSize: '12px', color: '#e4e4e7', lineHeight: 1.3 }}>
+                  Skill radar mastery updates, XP rewards & unlocked cheat-sheet cards.
+                </span>
               </div>
             </div>
 

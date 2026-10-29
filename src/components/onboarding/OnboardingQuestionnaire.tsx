@@ -164,12 +164,14 @@ export const OnboardingQuestionnaire = ({ onComplete, onSkip }: OnboardingQuesti
       <div
         style={{
           minHeight: '100vh',
-          background: '#07080a',
+          background: 'transparent',
           color: '#f4f4f5',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           padding: '24px',
+          position: 'relative',
+          zIndex: 1,
         }}
       >
         <div
@@ -373,7 +375,7 @@ export const OnboardingQuestionnaire = ({ onComplete, onSkip }: OnboardingQuesti
     <div
       style={{
         minHeight: '100vh',
-        background: '#07080a',
+        background: 'transparent',
         color: '#f4f4f5',
         display: 'flex',
         flexDirection: 'column',
@@ -381,6 +383,8 @@ export const OnboardingQuestionnaire = ({ onComplete, onSkip }: OnboardingQuesti
         padding: '24px 20px',
         maxWidth: '680px',
         margin: '0 auto',
+        position: 'relative',
+        zIndex: 1,
       }}
     >
       {/* Top Navigation & Skip Button */}

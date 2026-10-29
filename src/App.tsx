@@ -58,12 +58,12 @@ function App() {
     };
   }, [currentView]);
 
-  // If user clicks start on landing page: if they haven't completed onboarding, guide them to questionnaire
+  // User CTA from landing page: "Launch Workspace" launches the diagnostic questionnaire
   const handleLandingStart = (view?: any, lessonId?: string) => {
-    if (!user.onboarding?.completed) {
+    if (view === 'onboarding' || !view || view === 'learn') {
       navigateTo('onboarding');
     } else {
-      navigateTo(view || 'learn', lessonId);
+      navigateTo(view, lessonId);
     }
   };
 
@@ -81,8 +81,11 @@ function App() {
           display: 'flex',
           flexDirection: 'column',
           background: 'var(--color-bg)',
-          color: 'var(--color-text)'
+          color: 'var(--color-text)',
+          position: 'relative',
         }}>
+          {/* Pixel Art Ruins Atmosphere */}
+          <div className="ruins-ambient-bg" />
           {/* Header */}
           <header style={{
             position: 'sticky',
@@ -117,7 +120,7 @@ function App() {
             </button>
           </header>
 
-          <main style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px 16px' }}>
+          <main style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px 16px', position: 'relative', zIndex: 1 }}>
             <OnboardingQuestionnaire
               onComplete={(answers, conceptScore, experienceScore, level, startingLessonId) => {
                 completeOnboarding(answers, conceptScore, experienceScore, level, startingLessonId);

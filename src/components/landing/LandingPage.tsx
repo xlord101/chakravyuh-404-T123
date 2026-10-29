@@ -345,7 +345,7 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
           {/* Launch Workspace CTA Button */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <button
-              onClick={() => onStartLearning('learn')}
+              onClick={() => onStartLearning('onboarding')}
               className="btn-tactile-signal"
               style={{
                 padding: '8px 18px',
@@ -502,7 +502,7 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
 
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', marginBottom: '28px' }}>
                 <button
-                  onClick={() => onStartLearning('learn')}
+                  onClick={() => onStartLearning('onboarding')}
                   className="btn-tactile-signal"
                   style={{ padding: '14px 28px', fontSize: '15px' }}
                 >
@@ -1136,7 +1136,7 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
             {/* Big Launch Workspace Call-to-Action */}
             <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', flexWrap: 'wrap' }}>
               <button
-                onClick={() => onStartLearning('learn')}
+                onClick={() => onStartLearning('onboarding')}
                 className="btn-tactile-signal"
                 style={{
                   fontSize: '16px',

@@ -56,15 +56,17 @@ body {
 .ruins-ambient-bg {
   position: fixed;
   inset: 0;
-  background-image: url('/images/learning-bg.png');
+  background-image: 
+    radial-gradient(ellipse at 50% 35%, rgba(8, 13, 11, 0.35) 0%, rgba(8, 13, 11, 0.78) 100%),
+    url('/images/learning-bg.png');
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
-  opacity: 0.12;
+  opacity: 0.55;
   pointer-events: none;
   z-index: 0;
   image-rendering: pixelated;
-  filter: contrast(1.15) brightness(0.85);
+  filter: contrast(1.15) brightness(1.0);
 }
 
 /* Custom Scrollbar */
@@ -167,23 +169,27 @@ body {
   box-shadow: 0 1px 0 #9c6717;
 }
 
-/* PCB Cards (PRD 2.4) */
+/* PCB Cards (PRD 2.4) - Translucent frosted stone to harmonize with pixel ruins */
 .pcb-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-line);
+  background: rgba(15, 24, 21, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(92, 219, 181, 0.22);
   border-radius: var(--radius-card);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .pcb-card:hover {
-  border-color: #364942;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 12px rgba(124, 255, 178, 0.05);
+  border-color: rgba(92, 219, 181, 0.45);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 16px rgba(92, 219, 181, 0.15);
 }
 
 .pcb-card-active {
-  background: var(--color-surface);
+  background: rgba(21, 34, 30, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--color-signal);
   border-radius: var(--radius-card);
-  box-shadow: 0 0 20px rgba(124, 255, 178, 0.12);
+  box-shadow: 0 0 24px rgba(92, 219, 181, 0.2);
 }
 
 /* Trace line & Oscilloscope grid */

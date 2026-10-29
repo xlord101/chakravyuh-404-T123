@@ -23,14 +23,16 @@ export const LearnView = ({ user, onSelectLesson, onOpenOnboarding }: LearnViewP
   const currentLevel = user.onboarding?.selectedLevel || user.onboarding?.recommendedLevel || 'beginner';
 
   return (
-    <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '32px 20px' }}>
+    <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '32px 20px', position: 'relative', zIndex: 1 }}>
 
       {/* Adaptive Diagnostic Banner (PRD Section 3 & 4) */}
       <div
         style={{
-          background: 'linear-gradient(135deg, rgba(124, 255, 178, 0.05) 0%, rgba(92, 200, 255, 0.03) 100%)',
+          background: 'linear-gradient(135deg, rgba(21, 34, 30, 0.78) 0%, rgba(15, 24, 21, 0.82) 100%)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
           border: '1px solid',
-          borderColor: onboardingDone ? 'rgba(124, 255, 178, 0.3)' : 'rgba(255, 184, 77, 0.4)',
+          borderColor: onboardingDone ? 'rgba(92, 219, 181, 0.35)' : 'rgba(229, 169, 60, 0.45)',
           borderRadius: '14px',
           padding: '20px 24px',
           marginBottom: '28px',
@@ -122,7 +124,9 @@ export const LearnView = ({ user, onSelectLesson, onOpenOnboarding }: LearnViewP
               fontFamily: 'var(--font-mono)',
               fontSize: '13px',
               fontWeight: selectedTrackId === track.id ? 700 : 500,
-              background: selectedTrackId === track.id ? 'var(--color-surface-2)' : 'transparent',
+              background: selectedTrackId === track.id ? 'rgba(21, 34, 30, 0.85)' : 'rgba(15, 24, 21, 0.65)',
+              backdropFilter: 'blur(8px)',
+              WebkitBackdropFilter: 'blur(8px)',
               color: selectedTrackId === track.id ? '#ffffff' : 'var(--color-muted)',
               border: selectedTrackId === track.id ? '1px solid var(--color-signal)' : '1px solid var(--color-line)',
               cursor: 'pointer',
@@ -242,7 +246,7 @@ export const LearnView = ({ user, onSelectLesson, onOpenOnboarding }: LearnViewP
                     width: '100%',
                   }}
                 >
-                  {/* Component Node Card - Solid Opaque PCB Substrate */}
+                  {/* Component Node Card - Translucent Frosted PCB Substrate */}
                   <div
                     onClick={() => {
                       if (!isLocked) {
@@ -253,14 +257,20 @@ export const LearnView = ({ user, onSelectLesson, onOpenOnboarding }: LearnViewP
                       display: 'flex',
                       alignItems: 'center',
                       gap: '16px',
-                      background: completed ? '#0F1815' : isCurrent ? '#15221E' : '#080D0B',
+                      background: completed
+                        ? 'rgba(15, 24, 21, 0.82)'
+                        : isCurrent
+                        ? 'rgba(21, 34, 30, 0.86)'
+                        : 'rgba(8, 13, 11, 0.80)',
+                      backdropFilter: 'blur(12px)',
+                      WebkitBackdropFilter: 'blur(12px)',
                       border: `1.5px solid ${completed ? 'var(--color-signal)' : isCurrent ? 'var(--color-signal)' : 'var(--color-line)'}`,
                       borderRadius: '16px',
                       padding: '18px 22px',
                       maxWidth: '480px',
                       width: '92%',
                       cursor: isLocked ? 'not-allowed' : 'pointer',
-                      boxShadow: isCurrent ? '0 0 24px rgba(92, 219, 181, 0.2)' : '0 4px 12px rgba(0, 0, 0, 0.4)',
+                      boxShadow: isCurrent ? '0 0 24px rgba(92, 219, 181, 0.25)' : '0 4px 16px rgba(0, 0, 0, 0.5)',
                       opacity: isLocked ? 0.45 : 1,
                       transition: 'all 0.2s ease',
                       position: 'relative',

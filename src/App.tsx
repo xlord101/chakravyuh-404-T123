@@ -10,6 +10,7 @@ import { DebugDojo } from './components/app/DebugDojo';
 import { MissionsView } from './components/app/MissionsView';
 import { ProfileView } from './components/app/ProfileView';
 import { SparkTutorDrawer } from './components/app/SparkTutorDrawer';
+import { SparkMascot } from './components/mascot/SparkMascot';
 import { OnboardingQuestionnaire } from './components/onboarding/OnboardingQuestionnaire';
 import { NoiseOverlay } from './components/layout/NoiseOverlay';
 import './index.css';
@@ -163,8 +164,27 @@ function App() {
             <MissionsView onMissionCompleted={() => {}} />
           )}
 
-          {currentView === 'profile' && <ProfileView user={user} />}
+          {currentView === 'profile' && (
+            <ProfileView
+              user={user}
+              onNavigateToLesson={(id) => navigateTo('lesson', id)}
+            />
+          )}
         </AppShell>
+      )}
+
+      {/* Interactive Mascot — Spark (PRD Section 8) */}
+      {currentView !== 'landing' && (
+        <SparkMascot
+          user={user}
+          currentLessonId={currentView === 'lesson' ? activeLessonId : undefined}
+          onOpenSparkTutor={(prompt?: string) => {
+            setSparkTutorOpen(true);
+            if (prompt) {
+              sendSparkMessage(prompt);
+            }
+          }}
+        />
       )}
 
       {/* Persistent Floating Spark AI Tutor Drawer (PRD Section 14) */}

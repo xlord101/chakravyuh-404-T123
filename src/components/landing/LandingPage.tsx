@@ -326,13 +326,13 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
                 onClick={() => scrollToSlide(idx)}
                 className="font-pixel"
                 style={{
-                  padding: '5px 12px',
+                  padding: '6px 14px',
                   borderRadius: '999px',
                   border: '1px solid',
                   borderColor: activeSlideIndex === idx ? 'rgba(124, 255, 178, 0.4)' : 'transparent',
                   background: activeSlideIndex === idx ? 'rgba(124, 255, 178, 0.08)' : 'transparent',
                   color: activeSlideIndex === idx ? '#7CFFB2' : '#a1a1aa',
-                  fontSize: '9px',
+                  fontSize: '11px',
                   cursor: 'pointer',
                   transition: 'all 0.2s ease',
                 }}
@@ -490,30 +490,30 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
 
               <p
                 style={{
-                  fontSize: 'clamp(16px, 1.8vw, 20px)',
+                  fontSize: 'clamp(17px, 2.0vw, 22px)',
                   color: '#a1a1aa',
-                  lineHeight: 1.5,
-                  maxWidth: '520px',
+                  lineHeight: 1.55,
+                  maxWidth: '560px',
                   marginBottom: '28px',
                 }}
               >
                 The interactive Electronics & Telecommunication engine. Touch circuits, disassemble silicon, simulate logic gates, compile embedded C++, and trace RF signals in real time.
               </p>
 
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '28px' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', marginBottom: '28px' }}>
                 <button
                   onClick={() => onStartLearning('learn')}
                   className="btn-tactile-signal"
-                  style={{ padding: '12px 24px', fontSize: '14px' }}
+                  style={{ padding: '14px 28px', fontSize: '15px' }}
                 >
                   <span>Launch Workspace</span>
-                  <ArrowRight size={15} />
+                  <ArrowRight size={16} />
                 </button>
 
                 <button
                   onClick={() => scrollToSlide(1)}
                   className="btn-tactile-surface"
-                  style={{ padding: '12px 20px', fontSize: '14px' }}
+                  style={{ padding: '14px 24px', fontSize: '15px' }}
                 >
                   <span>Inspect Disassembly ↓</span>
                 </button>
@@ -523,10 +523,10 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '14px',
+                  gap: '16px',
                   fontFamily: 'var(--font-mono)',
-                  fontSize: '11px',
-                  color: '#71717a',
+                  fontSize: '13px',
+                  color: '#8fa89b',
                 }}
               >
                 <span>✓ Zero hardware kit cost</span>
@@ -609,7 +609,7 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
 
             <p
               style={{
-                fontSize: '15px',
+                fontSize: '16px',
                 color: '#a1a1aa',
                 lineHeight: 1.6,
                 marginBottom: '24px',
@@ -625,18 +625,18 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
                   background: 'rgba(255, 255, 255, 0.03)',
                   border: '1px solid rgba(255, 255, 255, 0.06)',
                   borderRadius: '8px',
-                  padding: '12px 16px',
+                  padding: '14px 18px',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '14px',
+                  gap: '16px',
                 }}
               >
-                <div className="font-pixel" style={{ fontSize: '18px', fontWeight: 700, color: '#FF5C6C' }}>
+                <div className="font-pixel" style={{ fontSize: '20px', fontWeight: 700, color: '#FF5C6C' }}>
                   2 HRS
                 </div>
                 <div>
-                  <div style={{ fontSize: '13px', fontWeight: 700, color: '#ffffff' }}>Lab Bottleneck</div>
-                  <div style={{ fontSize: '12px', color: '#71717a' }}>3 students fighting over 1 faulty vintage oscilloscope.</div>
+                  <div style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff' }}>Lab Bottleneck</div>
+                  <div style={{ fontSize: '13px', color: '#8fa89b' }}>3 students fighting over 1 faulty vintage oscilloscope.</div>
                 </div>
               </div>
 
@@ -645,18 +645,18 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
                   background: 'rgba(255, 255, 255, 0.03)',
                   border: '1px solid rgba(255, 255, 255, 0.06)',
                   borderRadius: '8px',
-                  padding: '12px 16px',
+                  padding: '14px 18px',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '14px',
+                  gap: '16px',
                 }}
               >
-                <div className="font-pixel" style={{ fontSize: '18px', fontWeight: 700, color: '#FFB84D' }}>
+                <div className="font-pixel" style={{ fontSize: '20px', fontWeight: 700, color: '#FFB84D' }}>
                   ₹15K
                 </div>
                 <div>
-                  <div style={{ fontSize: '13px', fontWeight: 700, color: '#ffffff' }}>Hardware Cost Barrier</div>
-                  <div style={{ fontSize: '12px', color: '#71717a' }}>Costly starter kits prone to instant accidental burnout.</div>
+                  <div style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff' }}>Hardware Cost Barrier</div>
+                  <div style={{ fontSize: '13px', color: '#8fa89b' }}>Costly starter kits prone to instant accidental burnout.</div>
                 </div>
               </div>
 
@@ -729,7 +729,7 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
 
             <p
               style={{
-                fontSize: '15px',
+                fontSize: '16px',
                 color: '#a1a1aa',
                 lineHeight: 1.6,
                 marginBottom: '24px',
@@ -749,12 +749,12 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
-                  <Cpu size={16} color="#7CFFB2" />
-                  <span style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff' }}>
+                  <Cpu size={18} color="#7CFFB2" />
+                  <span style={{ fontSize: '15px', fontWeight: 700, color: '#ffffff' }}>
                     1. Digital Logic Matrix
                   </span>
                 </div>
-                <p style={{ fontSize: '12px', color: '#a1a1aa', lineHeight: 1.5 }}>
+                <p style={{ fontSize: '13px', color: '#8fa89b', lineHeight: 1.5 }}>
                   Interactive AND, OR, NOT, NAND, XOR gates. Wires glow phosphor green when energized. Live auto-evaluating truth tables with active row tracking.
                 </p>
               </div>
@@ -769,12 +769,12 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
-                  <Terminal size={16} color="#FFB84D" />
-                  <span style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff' }}>
+                  <Terminal size={18} color="#FFB84D" />
+                  <span style={{ fontSize: '15px', fontWeight: 700, color: '#ffffff' }}>
                     2. Embedded C++ Runtime
                   </span>
                 </div>
-                <p style={{ fontSize: '12px', color: '#a1a1aa', lineHeight: 1.5 }}>
+                <p style={{ fontSize: '13px', color: '#8fa89b', lineHeight: 1.5 }}>
                   In-browser ATmega microcontroller emulator. Write real Arduino firmware, manipulate digital I/O pins, and monitor live UART serial transmissions.
                 </p>
               </div>
@@ -789,12 +789,12 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
-                  <Activity size={16} color="#5CC8FF" />
-                  <span style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff' }}>
+                  <Activity size={18} color="#5CC8FF" />
+                  <span style={{ fontSize: '15px', fontWeight: 700, color: '#ffffff' }}>
                     3. RF & Telecommunication Scope
                   </span>
                 </div>
-                <p style={{ fontSize: '12px', color: '#a1a1aa', lineHeight: 1.5 }}>
+                <p style={{ fontSize: '13px', color: '#8fa89b', lineHeight: 1.5 }}>
                   Interactive Web Audio oscillator & signal scope. Synthesize sine and square waves, test noise filtration, and hear carrier frequencies live.
                 </p>
               </div>
@@ -803,7 +803,7 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
             <button
               onClick={() => onStartLearning('lab')}
               className="btn-tactile-surface"
-              style={{ width: '100%', fontSize: '13px' }}
+              style={{ width: '100%', fontSize: '14px', padding: '12px 20px' }}
             >
               <span>Explore Virtual Lab Sandbox →</span>
             </button>
@@ -852,7 +852,7 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
 
             <p
               style={{
-                fontSize: '15px',
+                fontSize: '16px',
                 color: '#a1a1aa',
                 lineHeight: 1.6,
                 marginBottom: '20px',
@@ -861,22 +861,22 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
               Passive reading creates the illusion of competence. Enigma enforces a high-retention 5-step interactive mastery cycle:
             </p>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '22px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '22px' }}>
               <div
                 style={{
                   background: 'rgba(255, 255, 255, 0.03)',
                   border: '1px solid rgba(255, 255, 255, 0.06)',
                   borderRadius: '8px',
-                  padding: '10px 14px',
+                  padding: '12px 16px',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '12px',
+                  gap: '14px',
                 }}
               >
-                <span className="font-pixel" style={{ fontSize: '9px', color: '#5CC8FF', minWidth: '65px' }}>
+                <span className="font-pixel" style={{ fontSize: '11px', color: '#5CC8FF', minWidth: '75px' }}>
                   01 DISCOVER
                 </span>
-                <span style={{ fontSize: '12px', color: '#e4e4e7', lineHeight: 1.3 }}>
+                <span style={{ fontSize: '14px', color: '#e4e4e7', lineHeight: 1.35 }}>
                   Visual micro-concepts & clickable component pinouts in under 90s.
                 </span>
               </div>
@@ -886,16 +886,16 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
                   background: 'rgba(255, 255, 255, 0.03)',
                   border: '1px solid rgba(255, 255, 255, 0.06)',
                   borderRadius: '8px',
-                  padding: '10px 14px',
+                  padding: '12px 16px',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '12px',
+                  gap: '14px',
                 }}
               >
-                <span className="font-pixel" style={{ fontSize: '9px', color: '#7CFFB2', minWidth: '65px' }}>
+                <span className="font-pixel" style={{ fontSize: '11px', color: '#7CFFB2', minWidth: '75px' }}>
                   02 SIMULATE
                 </span>
-                <span style={{ fontSize: '12px', color: '#e4e4e7', lineHeight: 1.3 }}>
+                <span style={{ fontSize: '14px', color: '#e4e4e7', lineHeight: 1.35 }}>
                   Live embedded sandbox: tune resistance, toggle gates & run C++ code.
                 </span>
               </div>
@@ -905,16 +905,16 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
                   background: 'rgba(255, 255, 255, 0.03)',
                   border: '1px solid rgba(255, 255, 255, 0.06)',
                   borderRadius: '8px',
-                  padding: '10px 14px',
+                  padding: '12px 16px',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '12px',
+                  gap: '14px',
                 }}
               >
-                <span className="font-pixel" style={{ fontSize: '9px', color: '#FFB84D', minWidth: '65px' }}>
+                <span className="font-pixel" style={{ fontSize: '11px', color: '#FFB84D', minWidth: '75px' }}>
                   03 PLAY
                 </span>
-                <span style={{ fontSize: '12px', color: '#e4e4e7', lineHeight: 1.3 }}>
+                <span style={{ fontSize: '14px', color: '#e4e4e7', lineHeight: 1.35 }}>
                   Mini-games: Gate Predictor, Truth Table Sprint, Component Match.
                 </span>
               </div>
@@ -924,16 +924,16 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
                   background: 'rgba(255, 255, 255, 0.03)',
                   border: '1px solid rgba(255, 255, 255, 0.06)',
                   borderRadius: '8px',
-                  padding: '10px 14px',
+                  padding: '12px 16px',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '12px',
+                  gap: '14px',
                 }}
               >
-                <span className="font-pixel" style={{ fontSize: '9px', color: '#FF5C6C', minWidth: '65px' }}>
+                <span className="font-pixel" style={{ fontSize: '11px', color: '#FF5C6C', minWidth: '75px' }}>
                   04 DEBUG
                 </span>
-                <span style={{ fontSize: '12px', color: '#e4e4e7', lineHeight: 1.3 }}>
+                <span style={{ fontSize: '14px', color: '#e4e4e7', lineHeight: 1.35 }}>
                   Injected faults (floating inputs, reversed polarity) solved via probe.
                 </span>
               </div>
@@ -943,17 +943,17 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
                   background: 'rgba(255, 255, 255, 0.03)',
                   border: '1px solid rgba(255, 255, 255, 0.06)',
                   borderRadius: '8px',
-                  padding: '10px 14px',
+                  padding: '12px 16px',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '12px',
+                  gap: '14px',
                 }}
               >
-                <span className="font-pixel" style={{ fontSize: '9px', color: '#a78bfa', minWidth: '65px' }}>
+                <span className="font-pixel" style={{ fontSize: '11px', color: '#a78bfa', minWidth: '75px' }}>
                   05 MASTER
                 </span>
-                <span style={{ fontSize: '12px', color: '#e4e4e7', lineHeight: 1.3 }}>
-                  Skill radar mastery updates, XP rewards & unlocked cheat-sheet cards.
+                <span style={{ fontSize: '14px', color: '#e4e4e7', lineHeight: 1.35 }}>
+                  5-Question adaptive quiz, concept radar updates & unlocked cheat-sheets.
                 </span>
               </div>
             </div>
@@ -961,7 +961,7 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
             <button
               onClick={() => onStartLearning('dojo')}
               className="btn-tactile-signal"
-              style={{ width: '100%', fontSize: '13px' }}
+              style={{ width: '100%', fontSize: '14px', padding: '12px 20px' }}
             >
               <span>Test Fault Forensics in Debug Dojo →</span>
             </button>
@@ -1047,12 +1047,12 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
               >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
                   <Cpu size={20} color="#7CFFB2" />
-                  <span className="font-pixel" style={{ fontSize: '9px', color: '#7CFFB2' }}>LIVE</span>
+                  <span className="font-pixel" style={{ fontSize: '11px', color: '#7CFFB2' }}>LIVE</span>
                 </div>
-                <div style={{ fontSize: '15px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
+                <div style={{ fontSize: '16px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
                   Logic Gate Builder
                 </div>
-                <div style={{ fontSize: '12px', color: '#71717a', lineHeight: 1.4 }}>
+                <div style={{ fontSize: '13px', color: '#8fa89b', lineHeight: 1.45 }}>
                   Connect XOR & Half Adders with live phosphor signal flow & truth tables.
                 </div>
               </div>
@@ -1072,12 +1072,12 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
               >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
                   <Terminal size={20} color="#FFB84D" />
-                  <span className="font-pixel" style={{ fontSize: '9px', color: '#FFB84D' }}>AVR C++</span>
+                  <span className="font-pixel" style={{ fontSize: '11px', color: '#FFB84D' }}>AVR C++</span>
                 </div>
-                <div style={{ fontSize: '15px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
+                <div style={{ fontSize: '16px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
                   Arduino IDE & Telemetry
                 </div>
-                <div style={{ fontSize: '12px', color: '#71717a', lineHeight: 1.4 }}>
+                <div style={{ fontSize: '13px', color: '#8fa89b', lineHeight: 1.45 }}>
                   Run Blink & PWM sketches with real-time Serial Monitor readouts.
                 </div>
               </div>
@@ -1097,12 +1097,12 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
               >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
                   <Bug size={20} color="#FF5C6C" />
-                  <span className="font-pixel" style={{ fontSize: '9px', color: '#FF5C6C' }}>FORENSICS</span>
+                  <span className="font-pixel" style={{ fontSize: '11px', color: '#FF5C6C' }}>FORENSICS</span>
                 </div>
-                <div style={{ fontSize: '15px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
+                <div style={{ fontSize: '16px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
                   Debug Dojo Forensics
                 </div>
-                <div style={{ fontSize: '12px', color: '#71717a', lineHeight: 1.4 }}>
+                <div style={{ fontSize: '13px', color: '#8fa89b', lineHeight: 1.45 }}>
                   Diagnose sabotaged circuits using the virtual multimeter probe.
                 </div>
               </div>
@@ -1122,12 +1122,12 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
               >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
                   <Activity size={20} color="#5CC8FF" />
-                  <span className="font-pixel" style={{ fontSize: '9px', color: '#5CC8FF' }}>WEB AUDIO</span>
+                  <span className="font-pixel" style={{ fontSize: '11px', color: '#5CC8FF' }}>WEB AUDIO</span>
                 </div>
-                <div style={{ fontSize: '15px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
+                <div style={{ fontSize: '16px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
                   Signal Scope & Audio
                 </div>
-                <div style={{ fontSize: '12px', color: '#71717a', lineHeight: 1.4 }}>
+                <div style={{ fontSize: '13px', color: '#8fa89b', lineHeight: 1.45 }}>
                   Generate sine/square waveforms and test noise filters via Web Audio.
                 </div>
               </div>

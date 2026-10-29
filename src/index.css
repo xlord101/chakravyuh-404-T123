@@ -4,17 +4,17 @@
    ========================================================================== */
 
 :root {
-  /* PRD 2.2 Exact Tokens */
-  --color-bg: #0B0F0E;
-  --color-surface: #111816;
-  --color-surface-2: #17201D;
-  --color-line: #24302C;
-  --color-text: #E8EFEA;
-  --color-muted: #8A9A93;
-  --color-signal: #7CFFB2;   /* Phosphor green - active, correct, CTA */
-  --color-amber: #FFB84D;    /* Streak, warnings */
-  --color-cyan: #5CC8FF;     /* AI Tutor Spark, info */
-  --color-fault: #FF5C6C;    /* Errors, Debug Dojo faults */
+  /* PRD 2.2 Tokens — Harmonized with Pixel Art Ruins & PCB Palette */
+  --color-bg: #080D0B;       /* Deep moss-slate canvas */
+  --color-surface: #0F1815;  /* Weathered stone container panels */
+  --color-surface-2: #15221E;/* Elevated mossy stone cards & terminal bays */
+  --color-line: #23352E;     /* Stone chisel edges & circuit traces */
+  --color-text: #E2E8E5;     /* Clean carved stone text */
+  --color-muted: #829C90;    /* Weathered lichen & telemetry readouts */
+  --color-signal: #5CDBB5;   /* River jade / bright phosphor active signal */
+  --color-amber: #E5A93C;    /* Autumn leaf gold / streak / warning */
+  --color-cyan: #4EA8DE;     /* Sky water / AI Tutor Spark */
+  --color-fault: #F87171;    /* Error red / fault indicators */
 
   /* Typography */
   --font-display: 'Hanken Grotesk', -apple-system, sans-serif;
@@ -50,6 +50,21 @@ body {
   width: 100%;
   overflow-x: hidden;
   background-color: var(--color-bg);
+}
+
+/* Ambient Pixel Art Ruins Background for Learning Page (PRD Section 2) */
+.ruins-ambient-bg {
+  position: fixed;
+  inset: 0;
+  background-image: url('/images/learning-bg.png');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+  image-rendering: pixelated;
+  filter: contrast(1.15) brightness(0.85);
 }
 
 /* Custom Scrollbar */

@@ -32,8 +32,11 @@ export const AppShell = ({
       display: 'flex',
       flexDirection: 'column',
       background: 'var(--color-bg)',
-      color: 'var(--color-text)'
+      color: 'var(--color-text)',
+      position: 'relative',
     }}>
+      {/* Ambient Pixel Art Ruins Background with Subtle Opacity (PRD Section 2) */}
+      <div className="ruins-ambient-bg" />
       {/* Top Stats Bar (PRD Section 7) */}
       <header style={{
         position: 'sticky',
@@ -189,6 +192,13 @@ export const AppShell = ({
             <div style={{ color: 'var(--color-muted)', marginTop: '4px', lineHeight: 1.4 }}>
               Ties floating inputs to 0V ground to prevent induced RF false triggers.
             </div>
+            <button
+              onClick={onOpenSparkTutor}
+              className="btn-tactile-surface"
+              style={{ marginTop: '8px', fontSize: '10px', padding: '4px 8px', width: '100%' }}
+            >
+              Ask Spark about this →
+            </button>
           </div>
         </aside>
 
@@ -197,33 +207,6 @@ export const AppShell = ({
           {children}
         </main>
       </div>
-
-      {/* Floating Spark AI Tutor Button (PRD 7 & 14.1) */}
-      <button
-        onClick={onOpenSparkTutor}
-        style={{
-          position: 'fixed',
-          bottom: '24px',
-          right: '24px',
-          zIndex: 250,
-          background: 'linear-gradient(135deg, #173d4c 0%, #0c2334 100%)',
-          color: 'var(--color-cyan)',
-          border: '1px solid var(--color-cyan)',
-          boxShadow: '0 8px 24px rgba(0,0,0,0.6), 0 0 16px rgba(92, 200, 255, 0.3)',
-          borderRadius: '999px',
-          padding: '10px 18px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '8px',
-          fontFamily: 'var(--font-mono)',
-          fontSize: '13px',
-          fontWeight: 700,
-          cursor: 'pointer'
-        }}
-      >
-        <Sparkles size={16} />
-        <span>Ask Spark AI</span>
-      </button>
 
       {/* Mobile Bottom Navigation Bar (PRD Section 7) */}
       <nav style={{

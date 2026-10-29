@@ -178,7 +178,7 @@ export const LearnView = ({ user, onSelectLesson, onOpenOnboarding }: LearnViewP
         </div>
       </div>
 
-      {/* Winding Vertical PCB Trace Path (PRD 8.2) */}
+      {/* Interconnected PCB Trace Path (PRD 8.2) */}
       <div style={{
         position: 'relative',
         display: 'flex',
@@ -186,106 +186,166 @@ export const LearnView = ({ user, onSelectLesson, onOpenOnboarding }: LearnViewP
         alignItems: 'center',
         padding: '20px 0 60px'
       }}>
-        {/* Central Vertical Copper Trace Line */}
-        <div style={{
-          position: 'absolute',
-          top: '30px',
-          bottom: '30px',
-          width: '4px',
-          background: 'linear-gradient(to bottom, var(--color-signal), #24302C)',
-          boxShadow: '0 0 10px rgba(124, 255, 178, 0.3)',
-          zIndex: 1
-        }} />
-
-        {/* Nodes List */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '48px', width: '100%', position: 'relative', zIndex: 5 }}>
+        {/* Nodes List with Inter-Block Copper Traces */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', position: 'relative', zIndex: 5 }}>
           {activeTrack.lessons.map((lesson, idx) => {
             const completed = isLessonComplete(lesson.id);
             const isCurrent = !completed && (idx === 0 || isLessonComplete(activeTrack.lessons[idx - 1]?.id));
             const isLocked = !completed && !isCurrent;
 
             return (
-              <motion.div
-                key={lesson.id}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: idx * 0.05 }}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  position: 'relative'
-                }}
-              >
-                {/* Component Node (Chip or Resistor) */}
-                <div
-                  onClick={() => {
-                    if (!isLocked) {
-                      setActiveModalLesson(lesson);
-                    }
-                  }}
+              <div key={lesson.id} style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                {/* Vertical Copper Connector Trace strictly BETWEEN blocks */}
+                {idx > 0 && (
+                  <div
+                    style={{
+                      height: '38px',
+                      width: '3px',
+                      background: completed
+                        ? 'var(--color-signal)'
+                        : isCurrent
+                        ? 'linear-gradient(to bottom, var(--color-signal), var(--color-line))'
+                        : 'var(--color-line)',
+                      boxShadow: completed ? '0 0 8px var(--color-signal)' : 'none',
+                      transition: 'all 0.3s ease',
+                      position: 'relative',
+                    }}
+                  >
+                    {/* Directional Signal Arrow between blocks */}
+                    {completed && (
+                      <div
+                        style={{
+                          position: 'absolute',
+                          top: '50%',
+                          left: '50%',
+                          transform: 'translate(-50%, -50%)',
+                          width: '7px',
+                          height: '7px',
+                          borderRadius: '50%',
+                          background: 'var(--color-signal)',
+                          boxShadow: '0 0 6px var(--color-signal)',
+                        }}
+                      />
+                    )}
+                  </div>
+                )}
+
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: idx * 0.05 }}
                   style={{
                     display: 'flex',
+                    justifyContent: 'center',
                     alignItems: 'center',
-                    gap: '16px',
-                    background: completed ? 'var(--color-surface)' : isCurrent ? 'var(--color-surface-2)' : '#07100D',
-                    border: `2px solid ${completed ? 'var(--color-signal)' : isCurrent ? 'var(--color-signal)' : 'var(--color-line)'}`,
-                    borderRadius: '16px',
-                    padding: '16px 20px',
-                    maxWidth: '460px',
-                    width: '90%',
-                    cursor: isLocked ? 'not-allowed' : 'pointer',
-                    boxShadow: isCurrent ? '0 0 24px rgba(124, 255, 178, 0.25)' : 'none',
-                    opacity: isLocked ? 0.45 : 1,
-                    transition: 'all 0.2s ease'
+                    position: 'relative',
+                    width: '100%',
                   }}
                 >
-                  {/* Node Icon Avatar */}
-                  <div style={{
-                    width: '44px',
-                    height: '44px',
-                    borderRadius: '10px',
-                    background: completed ? 'var(--color-signal)' : isCurrent ? 'rgba(124, 255, 178, 0.2)' : 'var(--color-surface)',
-                    color: completed ? '#071911' : isCurrent ? 'var(--color-signal)' : 'var(--color-muted)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0
-                  }}>
-                    {completed ? <CheckCircle2 size={24} /> : isLocked ? <Lock size={20} /> : <Cpu size={24} />}
-                  </div>
-
-                  {/* Node Metadata */}
-                  <div style={{ flex: 1 }}>
-                    <div style={{
+                  {/* Component Node Card - Solid Opaque PCB Substrate */}
+                  <div
+                    onClick={() => {
+                      if (!isLocked) {
+                        setActiveModalLesson(lesson);
+                      }
+                    }}
+                    style={{
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '8px',
-                      fontSize: '11px',
-                      fontFamily: 'var(--font-mono)',
-                      color: isCurrent ? 'var(--color-signal)' : 'var(--color-muted)',
-                      marginBottom: '3px'
+                      gap: '16px',
+                      background: completed ? '#0F1815' : isCurrent ? '#15221E' : '#080D0B',
+                      border: `1.5px solid ${completed ? 'var(--color-signal)' : isCurrent ? 'var(--color-signal)' : 'var(--color-line)'}`,
+                      borderRadius: '16px',
+                      padding: '18px 22px',
+                      maxWidth: '480px',
+                      width: '92%',
+                      cursor: isLocked ? 'not-allowed' : 'pointer',
+                      boxShadow: isCurrent ? '0 0 24px rgba(92, 219, 181, 0.2)' : '0 4px 12px rgba(0, 0, 0, 0.4)',
+                      opacity: isLocked ? 0.45 : 1,
+                      transition: 'all 0.2s ease',
+                      position: 'relative',
+                      zIndex: 10,
+                    }}
+                  >
+                    {/* Top Solder Terminal Pad */}
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: '-5px',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        width: '10px',
+                        height: '10px',
+                        borderRadius: '50%',
+                        background: completed ? 'var(--color-signal)' : 'var(--color-line)',
+                        border: '2px solid #080D0B',
+                        boxShadow: completed ? '0 0 6px var(--color-signal)' : 'none',
+                      }}
+                    />
+
+                    {/* Bottom Solder Terminal Pad */}
+                    <div
+                      style={{
+                        position: 'absolute',
+                        bottom: '-5px',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        width: '10px',
+                        height: '10px',
+                        borderRadius: '50%',
+                        background: completed ? 'var(--color-signal)' : 'var(--color-line)',
+                        border: '2px solid #080D0B',
+                        boxShadow: completed ? '0 0 6px var(--color-signal)' : 'none',
+                      }}
+                    />
+
+                    {/* Node Icon Avatar */}
+                    <div style={{
+                      width: '44px',
+                      height: '44px',
+                      borderRadius: '10px',
+                      background: completed ? 'var(--color-signal)' : isCurrent ? 'rgba(92, 219, 181, 0.15)' : 'var(--color-surface-2)',
+                      color: completed ? '#071911' : isCurrent ? 'var(--color-signal)' : 'var(--color-muted)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
                     }}>
-                      <span>{lesson.chapter}</span>
-                      <span>•</span>
-                      <span>+{lesson.xpReward} XP</span>
+                      {completed ? <CheckCircle2 size={24} /> : isLocked ? <Lock size={20} /> : <Cpu size={24} />}
                     </div>
 
-                    <h4 style={{ fontSize: '16px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
-                      {lesson.title}
-                    </h4>
+                    {/* Node Metadata */}
+                    <div style={{ flex: 1 }}>
+                      <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        fontSize: '11px',
+                        fontFamily: 'var(--font-mono)',
+                        color: isCurrent ? 'var(--color-signal)' : 'var(--color-muted)',
+                        marginBottom: '3px'
+                      }}>
+                        <span>{lesson.chapter}</span>
+                        <span>•</span>
+                        <span>+{lesson.xpReward} XP</span>
+                      </div>
 
-                    <p style={{ fontSize: '12px', color: 'var(--color-muted)', marginTop: '4px', lineHeight: 1.4 }}>
-                      {lesson.summary}
-                    </p>
+                      <h4 style={{ fontSize: '16px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
+                        {lesson.title}
+                      </h4>
+
+                      <p style={{ fontSize: '12px', color: 'var(--color-muted)', marginTop: '4px', lineHeight: 1.4 }}>
+                        {lesson.summary}
+                      </p>
+                    </div>
+
+                    {/* Action arrow */}
+                    {!isLocked && (
+                      <ChevronRight size={18} color={isCurrent ? "var(--color-signal)" : "var(--color-muted)"} />
+                    )}
                   </div>
-
-                  {/* Action arrow */}
-                  {!isLocked && (
-                    <ChevronRight size={18} color={isCurrent ? "var(--color-signal)" : "var(--color-muted)"} />
-                  )}
-                </div>
-              </motion.div>
+                </motion.div>
+              </div>
             );
           })}
         </div>
@@ -343,9 +403,9 @@ export const LearnView = ({ user, onSelectLesson, onOpenOnboarding }: LearnViewP
               color: 'var(--color-text)',
               marginBottom: '24px'
             }}>
-              <div>// LESSON BEATS (PRD 9.1):</div>
-              <div style={{ color: 'var(--color-muted)', marginTop: '4px' }}>
-                1. Concept Hook → 2. Live Interactive Simulation → 3. Quick Check → 4. Break & Fix Dojo → 5. Recap Card
+              <div>// 5-STEP ENIGMA RHYTHM:</div>
+              <div style={{ color: 'var(--color-signal)', marginTop: '4px', fontWeight: 600 }}>
+                1. DISCOVER (&lt;90s) → 2. EXPERIMENT (Sandbox) → 3. PLAY (Mini-Game) → 4. BREAK &amp; DEBUG → 5. MASTER &amp; 5-Q QUIZ
               </div>
             </div>
 

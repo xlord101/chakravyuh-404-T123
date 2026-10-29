@@ -156,20 +156,21 @@ Points are scored transparently across two distinct vectors:
 - **Practical Experience Points ($E$):** Evaluated from Q1, Q4, and Q6.
   - Option A: $0$ pts | Option B: $+1$ pt | Option C: $+2$ pts | Option D: $+3$ pts. Max $E = 9$.
 
-#### Classification Thresholds
+#### Classification Thresholds & Fast-Track Test-Out Rules
 - **Beginner Explorer ($C \le 2$ or $E \le 3$):**
   - *Recommendation:* Starts on Track 1, Lesson 1 (`logic-1: Voltage & The First Bit`).
-  - *Scaffolding:* Step-by-step visual demonstrations, component pinout tooltips, generous AI hint scaffolding.
+  - *Scaffolding:* Step-by-step visual demonstrations, guided explanations, component pinout tooltips, generous AI hint scaffolding, and all lessons in standard sequence.
   - *Result Screen Copy:*  
     *"Your journey starts here: Beginner Explorer"*  
     *"You don't need to know everything already. ENIGMA will help you learn by experimenting."*
 - **Circuit Explorer / Intermediate ($C \ge 4$ and $E \ge 4$):**
-  - *Recommendation:* Unlocks Track 1 diagnostic checkpoint and recommends jumping to Combinatorial Adders (`logic-5`) or Arduino Microcontroller I/O (`ard-1`).
-  - *Scaffolding:* Streamlined text, direct sandbox editing, complex fault-injection puzzles, and microcontroller firmware challenges.
+  - *Fast-Track Test-Out:* Intermediate learners demonstrate mastery of basic binary voltage and Ohm's law fundamentals, allowing them to test out / fast-track past foundational lessons (`logic-1`, `logic-2`) directly into advanced Combinatorial Gates (`logic-3`) or Microcontroller Firmware (`ard-1`).
+  - *Scaffolding:* Harder conceptual questions, direct sandbox editing, complex fault-injection puzzles, and embedded C++ challenges with streamlined hints.
+  - *Revisit Anytime:* Fast-tracked or skipped lessons remain permanently accessible and can be reviewed, replayed, or completed for full XP at any time.
   - *Result Screen Copy:*  
     *"Your journey starts here: Circuit Explorer"*  
     *"Let's put your knowledge to work through simulations, coding and debugging."*
-- **Mixed / Ambiguous Results:** Defaults to recommending Beginner Explorer with a clear toggle: *"I'd like more advanced challenges right away"*.
+- **Level Flexibility & Retakes:** Learners can retake the diagnostic questionnaire, change their level preference in settings, or re-run assessments anytime without losing previously unlocked badges or XP.
 - **Primary Action Button:** `[ Start My Learning Journey → ]` immediately opens the personalized lesson player.
 
 ---
@@ -215,14 +216,110 @@ Every lesson pairs with a focused, 30-second to 2-minute mini-game designed to c
   3. *Tier 3 (Guided Solution):* *"LED-1 is backwards. Click the flip orientation tool to allow forward bias."*
 - **No Penalty Policy:** Students never lose lives or existing XP for incorrect attempts.
 
-### 4.5 Step 5 — MASTER
-- **Synthesis Assessment:** A fast 2-question validation quiz or a micro-challenge testing transfer of understanding.
-- **Reward & Progress HUD:** Displays concept learned, XP earned ($+25$ XP base, $+10$ accuracy bonus), updated concept mastery score (e.g. `Ohm's Law: 88% Mastered`), and cheat-sheet card unlocked.
-- **Smart Recommendation:** Suggests the immediate next lesson or an optional harder challenge.
+### 4.6 Comprehensive Pedagogical Structure for Every Module
+To bridge the gap between classroom theory and real engineering practice, every single lesson in ENIGMA must answer five fundamental engineering questions before mastery is awarded:
+1. **What You'll Learn:** Concise learning objectives and core electronic principles (e.g., forward bias, voltage division, Boolean minimization).
+2. **Why It Matters:** Why silicon chips, microcontrollers, and communication systems rely on this exact concept.
+3. **Real-World Applications & Implementation:** Physical commercial implementations in automotive ECUs, smartphones, aerospace telemetry, robotics, and medical devices.
+4. **Practical Experiment or Mini-Project:** A hands-on interactive challenge building a functional virtual sub-circuit or firmware routine.
+5. **Future Scope:** How this foundation unlocks advanced domains such as Edge AI, IoT sensor networks, autonomous robotics, quantum logic, and 5G/6G RF telecommunications.
 
 ---
 
-## 5. Concept-Specific Mini-Games Matrix
+## 5. Five-Question Adaptive Post-Lesson Quiz Engine
+
+Following the 5-step learning rhythm, every lesson concludes with an adaptive 5-question evaluation engine to verify true conceptual mastery.
+
+### 5.1 Quiz Mechanics & Question Archetypes
+The 5 questions are dynamically balanced across four distinct pedagogical archetypes:
+1. **Multiple Choice Concept Check (MCQ):** Verifies recall of fundamental definitions and component behaviors.
+2. **Deep Concept Understanding:** Tests understanding of underlying physics (e.g., electron flow, voltage potential drops, diode saturation).
+3. **Output / Waveform Prediction:** Shows a circuit diagram or input states and asks the student to predict the output state, voltage readout, or oscilloscope waveform.
+4. **Practical Scenario Diagnostic:** Real-world troubleshooting scenario (e.g., *"An automotive brake sensor reads 0V intermittently. Which component is the most probable point of failure?"*).
+5. **Code / Circuit Synthesis:** Asks the student to identify the correct firmware statement or wiring configuration needed to achieve a target specification.
+
+### 5.2 Adaptive Difficulty Tuning
+- **Beginner Explorer:** Receives foundational questions with visual circuit diagrams and clear distractors that isolate common beginner misconceptions.
+- **Circuit Explorer (Intermediate):** Receives higher-order questions involving multi-gate propagation, analog voltage dividers, timing constraints, and register-level microcontroller behavior.
+- **Adaptive In-Quiz Branching:** If a student answers Question 1 and 2 correctly on the first attempt, Questions 3 through 5 increase in conceptual rigor; if they struggle, hints and simpler diagnostic checks are presented.
+
+### 5.3 Diagnostic Feedback & Weak-Topic Tracking
+- **Instant Detailed Explanations:** Every option (correct or incorrect) provides instant pedagogical feedback explaining *why* it is right or wrong from first principles.
+- **Weak-Topic Registry:** Incorrect responses tag the user's profile with targeted weak topics (e.g., `Weak Topic: Pull-Down Resistors`, `Weak Topic: Truth Table De Morgan's Law`).
+- **Targeted Revision & Retry:** Students can retry failed quizzes with alternative question permutations. Quizzes never penalize previously earned XP or lock out content.
+
+---
+
+## 6. Lesson Progress & Mastery Dashboard
+
+ENIGMA strictly separates **Lesson Completion** (finishing the steps of a lesson) from **Concept Mastery** (demonstrating durable knowledge across quizzes, simulations, and debugging tasks).
+
+### 6.1 Progress Dashboard Metrics
+- **Completed vs. Remaining Lessons:** Track-by-track breakdown with visual segmented copper traces.
+- **Concept Mastery Radar:** Multi-axis radar visualization tracking mastery percentages across 5 core ENTC domains:
+  1. *Digital Logic & Silicon Architecture*
+  2. *Circuit Analysis & Ohm's Law*
+  3. *Microcontrollers & Embedded C++*
+  4. *Signals, Telecommunications & RF*
+  5. *Hardware Debugging & Fault Isolation*
+- **Quiz Performance Analytics:** Average quiz score, first-attempt accuracy percentage, and total questions answered.
+- **Weak Topics Registry:** Actionable list of flagged weak topics with 1-click **"Review Concept with Spark AI"** buttons.
+- **Mini-Games & Dojo Cases Solved:** Count of completed practical challenges and repaired circuit anomalies.
+- **Gamification HUD:** Cumulative XP, current rank level (`Spark` $\rightarrow$ `Pulse` $\rightarrow$ `Wave` $\rightarrow$ `Beam` $\rightarrow$ `Spectrum`), active streak calendar, and unlocked hardware achievement badges.
+- **Persistent State:** All progress, quiz scores, weak topics, and custom settings persist automatically across browser visits using structured `localStorage`.
+
+---
+
+## 7. Real-World Relevance & Mini-Projects Matrix
+
+Every curriculum track is explicitly mapped to industrial implementation and future technology sectors:
+
+| Module / Track | What You'll Learn | Real-World Application & Industry Usage | Hands-On Mini-Project | Future Scope (IoT, Robotics, Telecom) |
+| :--- | :--- | :--- | :--- | :--- |
+| **Track 1: Digital Logic** | Binary voltage thresholds, Boolean algebra, logic gates (AND/OR/NOT/NAND/NOR/XOR), adders | Digital CPUs (x86/ARM), ALU arithmetic units, safety interlocks in industrial elevator control systems | Virtual 4-Bit Half Adder & Fault-Tolerant Alarm Interlock | Quantum logic gates, Edge AI neuromorphic computing, asynchronous silicon architectures |
+| **Track 2: Arduino & Microcontrollers** | ATmega328P architecture, GPIO pin control, C++ firmware, ADC conversion, PWM duty cycles | Automotive engine control units (ECUs), drone flight controllers, 3D printer stepper drivers | Smart Temperature Fan Controller with PWM Speed Adjustment | Autonomous mobile robotics (ROS), industrial IoT (IIoT) telemetry nodes, smart grid monitoring |
+| **Track 3: Signals & Telecommunications** | Sine/Square/Triangle harmonics, RC low-pass filters, AM/FM modulation, signal-to-noise ratio (SNR) | Cellular 4G/5G transceivers, radar distance measurement, audio DSP synthesizers, biomedical ECG monitors | Audio Noise Cancellation Filter & Virtual AM Carrier Tuner | 6G terahertz communication, satellite constellations (Starlink), biomedical neural interfaces |
+| **Track 4: Embedded Protocols (Future)** | I2C, SPI, UART serial bus handshakes, baud rates, packet framing, parity bits | Satellite telemetry, avionics CAN bus in aircraft, EV battery management systems (BMS) | Multi-Sensor I2C Bus Scanner & Packet Sniffer | Connected autonomous vehicles (V2X), CubeSat nano-satellite constellations, subsea telemetry |
+
+---
+
+## 8. Interactive Mascot — Spark
+
+**Spark** is the encouraging, electronics-inspired companion that serves as the friendly face and interactive guide of ENIGMA.
+
+### 8.1 Visual Persona & Character Design
+- **Character Concept:** A retro-modern CRT oscilloscope display with glowing phosphor-green reactive eyes (`#5cdbb5`), two animated antenna terminals that emit subtle electromagnetic sparks, and a friendly copper trace body matching the dark PCB aesthetic.
+- **Design Integrity:** Matches the dark PCB and pixel art ruins palette (`#090e0c`, `#111a17`, `#5cdbb5`, `#e5a93c`). No cartoonish emojis or generic AI robot clichés.
+- **Floating Presence:** Spark remains visible as a compact, floating assistant widget in the bottom-right corner throughout the learning workspace, positioned so it never covers breadboards, code editors, or interactive controls.
+
+### 8.2 Contextual Speech Bubbles & Messaging
+Spark periodically presents compact, encouraging speech bubbles tailored to learner actions:
+- **First Visit:** *"Hi! I'm Spark ⚡ Ready to explore live circuits?"*
+- **Returning Learner:** *"Welcome back! Your streak is alive. Ready to continue where you left off?"*
+- **Active Lesson Help:** *"Need a little help? Ask Spark anytime!"*
+- **Lesson Completed:** *"Great job! You're getting the hang of it!"*
+- **Repeated Mistake in Debug / Quiz:** *"Stuck? Let's trace the signal and debug this together."*
+- **Encouragement:** *"One more challenge? You've got this!"*
+- **Recommended Next Step:** *"Your next lesson is waiting on the journey map. Let's go!"*
+
+### 8.3 Interaction & Anti-Annoyance Controls
+- **Dismissable:** Any speech bubble can be dismissed with a single click or tap.
+- **Mute Mode:** Learners can toggle `"Mute Automatic Mascot Hints"` in settings or via a quick icon on the mascot bubble.
+- **Lightweight Animation:** Smooth 60fps CSS transforms for idle bobbing and eye blinking. Full support for `prefers-reduced-motion` (replaces motion with static friendly posture).
+- **Tone Mandate:** Always warm, constructive, and empowering. Never judgmental, shaming, or aggressive regarding low scores or missed streaks.
+
+### 8.4 Spark AI Deep Integration
+Clicking the Spark mascot or the **"Ask Spark"** bubble opens the platform's **existing Spark AI assistant** (`SparkTutorDrawer.tsx` powered by `useSparkStore.ts`):
+- **Context Injection:** When opened, the mascot automatically passes rich runtime telemetry to the tutor:
+  - Active lesson ID and title
+  - Current user diagnostic level (`Beginner Explorer` vs `Circuit Explorer`)
+  - Active circuit state (component positions, wire connections, probe voltages)
+  - Recent quiz mistakes and flagged weak topics
+- **Quick Action Triggers:**
+  - `[ 💡 Explain this concept ]`: Generates an intuitive, real-world analogy of the active topic.
+  - `[ 🔍 Give me a hint ]`: Unlocks Tier 1 of the progressive 3-tier hint ladder without spoiling the answer.
+  - `[ 🛠️ Debug my circuit / code ]`: Analyzes open circuits, reversed polarities, or syntax errors.
+  - `[ 📝 Quiz me on this ]`: Generates an interactive micro-check on the active topic.
 
 | Track | Lesson ID & Concept | Mini-Game Name | Core Mechanics & Time Limit | Pedagogical Objective |
 | :--- | :--- | :--- | :--- | :--- |

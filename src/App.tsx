@@ -1,25 +1,39 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Lenis from '@studio-freight/lenis';
-import { Navbar } from './components/Navbar';
-import { HardwareHero } from './components/HardwareHero';
-import { SponsorsAndPartners } from './components/SponsorsAndPartners';
-import { EventCatalog } from './components/EventCatalog';
-import { ScheduleMatrix } from './components/ScheduleMatrix';
-import { RegistrationPortal } from './components/RegistrationPortal';
-import { DepartmentShowcase } from './components/DepartmentShowcase';
-import { FaqSection } from './components/FaqSection';
-import { FooterAndVenue } from './components/FooterAndVenue';
+import { useSparkStore } from './store/useSparkStore';
+import { LandingPage } from './components/landing/LandingPage';
+import { AppShell } from './components/app/AppShell';
+import { LearnView } from './components/app/LearnView';
+import { LessonPlayer } from './components/app/LessonPlayer';
+import { VirtualLab } from './components/app/VirtualLab';
+import { DebugDojo } from './components/app/DebugDojo';
+import { MissionsView } from './components/app/MissionsView';
+import { ProfileView } from './components/app/ProfileView';
+import { SparkTutorDrawer } from './components/app/SparkTutorDrawer';
 import './index.css';
 
 function App() {
-  const [selectedEventId, setSelectedEventId] = useState<string>('');
+  const {
+    currentView,
+    activeLessonId,
+    user,
+    sparkTutorOpen,
+    messages,
+    navigateTo,
+    completeLesson,
+    completeDojoCase,
+    setSparkTutorOpen,
+    sendSparkMessage
+  } = useSparkStore();
 
+  // Lenis smooth scroll active on landing page (PRD 5.2)
   useEffect(() => {
+    if (currentView !== 'landing') return;
+
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.1,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
-      gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 1,
       touchMultiplier: 1.5,
@@ -36,43 +50,60 @@ function App() {
       cancelAnimationFrame(animId);
       lenis.destroy();
     };
-  }, []);
-
-  const handleSelectEvent = (eventId: string) => {
-    setSelectedEventId(eventId);
-  };
+  }, [currentView]);
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      {/* Tactical Header Navigation */}
-      <Navbar />
+    <>
+      {currentView === 'landing' ? (
+        /* S1 - S11: Landing Page with Hero Live Circuit, Background Frame Sequence & Story */
+        <LandingPage onStartLearning={(view, lessonId) => navigateTo(view || 'learn', lessonId)} />
+      ) : (
+        /* S12+: App Shell for Students & Judges */
+        <AppShell
+          currentView={currentView}
+          user={user}
+          onNavigate={(view) => navigateTo(view)}
+          onOpenSparkTutor={() => setSparkTutorOpen(true)}
+        >
+          {currentView === 'learn' && (
+            <LearnView user={user} onSelectLesson={(id) => navigateTo('lesson', id)} />
+          )}
 
-      <main style={{ flex: 1 }}>
-        {/* 1. Interactive 240-Frame 3D Exploded Hardware Canvas Experience */}
-        <HardwareHero />
+          {currentView === 'lesson' && (
+            <LessonPlayer
+              lessonId={activeLessonId}
+              onComplete={(id) => completeLesson(id)}
+              onExit={() => navigateTo('learn')}
+              onAskSpark={() => setSparkTutorOpen(true)}
+            />
+          )}
 
-        {/* 2. Industry & Technical Societies Sponsor Banner */}
-        <SponsorsAndPartners />
+          {currentView === 'lab' && <VirtualLab />}
 
-        {/* 3. Flagship Competition Matrix & Event Catalog */}
-        <EventCatalog onSelectEventForRegistration={handleSelectEvent} />
+          {currentView === 'dojo' && (
+            <DebugDojo
+              onCaseSolved={(id) => completeDojoCase(id)}
+              onAskSpark={() => setSparkTutorOpen(true)}
+            />
+          )}
 
-        {/* 4. 48-Hour Operations Timeline & Schedule */}
-        <ScheduleMatrix />
+          {currentView === 'missions' && (
+            <MissionsView onMissionCompleted={() => {}} />
+          )}
 
-        {/* 5. Instant Pass Registration Portal with Digital QR Pass */}
-        <RegistrationPortal preselectedEventId={selectedEventId} />
+          {currentView === 'profile' && <ProfileView user={user} />}
+        </AppShell>
+      )}
 
-        {/* 6. Department of E&TC Infrastructure & SparkPath Innovation */}
-        <DepartmentShowcase />
-
-        {/* 7. FAQs Knowledge Base Accordion */}
-        <FaqSection />
-      </main>
-
-      {/* 8. Campus Venue Locator, Transit Directions & Team 404 Credits */}
-      <FooterAndVenue />
-    </div>
+      {/* Persistent Floating Spark AI Tutor Drawer (PRD Section 14) */}
+      <SparkTutorDrawer
+        isOpen={sparkTutorOpen}
+        onClose={() => setSparkTutorOpen(false)}
+        messages={messages}
+        onSendMessage={sendSparkMessage}
+        currentContextHint={currentView === 'lesson' ? `LESSON: ${activeLessonId}` : currentView.toUpperCase()}
+      />
+    </>
   );
 }
 

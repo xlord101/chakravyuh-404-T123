@@ -1,0 +1,294 @@
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Cpu, Lock, CheckCircle2, ChevronRight, Play } from 'lucide-react';
+import { CURRICULUM_TRACKS } from '../../data/curriculumData';
+import type { Lesson } from '../../data/curriculumData';
+import type { SparkUserState } from '../../store/useSparkStore';
+
+interface LearnViewProps {
+  user: SparkUserState;
+  onSelectLesson: (lessonId: string) => void;
+}
+
+export const LearnView = ({ user, onSelectLesson }: LearnViewProps) => {
+  const [selectedTrackId, setSelectedTrackId] = useState<string>('logic');
+  const [activeModalLesson, setActiveModalLesson] = useState<Lesson | null>(null);
+
+  const activeTrack = CURRICULUM_TRACKS.find((t) => t.id === selectedTrackId) || CURRICULUM_TRACKS[0];
+
+  const isLessonComplete = (id: string) => user.completedLessons.includes(id);
+
+  return (
+    <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '32px 20px' }}>
+
+      {/* Track Selector Bar (PRD 8.2) */}
+      <div style={{
+        display: 'flex',
+        gap: '10px',
+        overflowX: 'auto',
+        paddingBottom: '12px',
+        marginBottom: '28px'
+      }}>
+        {CURRICULUM_TRACKS.map((track) => (
+          <button
+            key={track.id}
+            onClick={() => setSelectedTrackId(track.id)}
+            style={{
+              padding: '10px 18px',
+              borderRadius: '8px',
+              fontFamily: 'var(--font-mono)',
+              fontSize: '13px',
+              fontWeight: selectedTrackId === track.id ? 700 : 500,
+              background: selectedTrackId === track.id ? 'var(--color-surface-2)' : 'transparent',
+              color: selectedTrackId === track.id ? '#ffffff' : 'var(--color-muted)',
+              border: selectedTrackId === track.id ? '1px solid var(--color-signal)' : '1px solid var(--color-line)',
+              cursor: 'pointer',
+              whiteSpace: 'nowrap',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px'
+            }}
+          >
+            <span>{track.title}</span>
+            {track.status === 'coming_soon' && (
+              <span className="chip-tag" style={{ fontSize: '9px' }}>SOON</span>
+            )}
+          </button>
+        ))}
+      </div>
+
+      {/* Track Header Card */}
+      <div className="pcb-card" style={{ padding: '24px', marginBottom: '36px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+          <span className="chip-tag chip-tag-signal">{activeTrack.badge}</span>
+          <span style={{ fontSize: '12px', fontFamily: 'var(--font-mono)', color: 'var(--color-muted)' }}>
+            {activeTrack.lessons.filter((l) => isLessonComplete(l.id)).length} of {activeTrack.lessons.length} Completed
+          </span>
+        </div>
+
+        <h2 style={{ fontSize: '24px', fontWeight: 800, color: '#ffffff', marginBottom: '6px' }}>
+          {activeTrack.title}
+        </h2>
+
+        <p style={{ fontSize: '14px', color: 'var(--color-muted)', lineHeight: 1.5 }}>
+          {activeTrack.description}
+        </p>
+
+        {/* Segmented Progress Line */}
+        <div style={{
+          display: 'flex',
+          gap: '6px',
+          marginTop: '16px',
+          height: '6px'
+        }}>
+          {activeTrack.lessons.map((l) => (
+            <div
+              key={l.id}
+              style={{
+                flex: 1,
+                borderRadius: '3px',
+                background: isLessonComplete(l.id) ? 'var(--color-signal)' : 'var(--color-line)',
+                boxShadow: isLessonComplete(l.id) ? '0 0 8px var(--color-signal)' : 'none'
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Winding Vertical PCB Trace Path (PRD 8.2) */}
+      <div style={{
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: '20px 0 60px'
+      }}>
+        {/* Central Vertical Copper Trace Line */}
+        <div style={{
+          position: 'absolute',
+          top: '30px',
+          bottom: '30px',
+          width: '4px',
+          background: 'linear-gradient(to bottom, var(--color-signal), #24302C)',
+          boxShadow: '0 0 10px rgba(124, 255, 178, 0.3)',
+          zIndex: 1
+        }} />
+
+        {/* Nodes List */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '48px', width: '100%', position: 'relative', zIndex: 5 }}>
+          {activeTrack.lessons.map((lesson, idx) => {
+            const completed = isLessonComplete(lesson.id);
+            const isCurrent = !completed && (idx === 0 || isLessonComplete(activeTrack.lessons[idx - 1]?.id));
+            const isLocked = !completed && !isCurrent;
+
+            return (
+              <motion.div
+                key={lesson.id}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: idx * 0.05 }}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  position: 'relative'
+                }}
+              >
+                {/* Component Node (Chip or Resistor) */}
+                <div
+                  onClick={() => {
+                    if (!isLocked) {
+                      setActiveModalLesson(lesson);
+                    }
+                  }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '16px',
+                    background: completed ? 'var(--color-surface)' : isCurrent ? 'var(--color-surface-2)' : '#07100D',
+                    border: `2px solid ${completed ? 'var(--color-signal)' : isCurrent ? 'var(--color-signal)' : 'var(--color-line)'}`,
+                    borderRadius: '16px',
+                    padding: '16px 20px',
+                    maxWidth: '460px',
+                    width: '90%',
+                    cursor: isLocked ? 'not-allowed' : 'pointer',
+                    boxShadow: isCurrent ? '0 0 24px rgba(124, 255, 178, 0.25)' : 'none',
+                    opacity: isLocked ? 0.45 : 1,
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  {/* Node Icon Avatar */}
+                  <div style={{
+                    width: '44px',
+                    height: '44px',
+                    borderRadius: '10px',
+                    background: completed ? 'var(--color-signal)' : isCurrent ? 'rgba(124, 255, 178, 0.2)' : 'var(--color-surface)',
+                    color: completed ? '#071911' : isCurrent ? 'var(--color-signal)' : 'var(--color-muted)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0
+                  }}>
+                    {completed ? <CheckCircle2 size={24} /> : isLocked ? <Lock size={20} /> : <Cpu size={24} />}
+                  </div>
+
+                  {/* Node Metadata */}
+                  <div style={{ flex: 1 }}>
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      fontSize: '11px',
+                      fontFamily: 'var(--font-mono)',
+                      color: isCurrent ? 'var(--color-signal)' : 'var(--color-muted)',
+                      marginBottom: '3px'
+                    }}>
+                      <span>{lesson.chapter}</span>
+                      <span>•</span>
+                      <span>+{lesson.xpReward} XP</span>
+                    </div>
+
+                    <h4 style={{ fontSize: '16px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
+                      {lesson.title}
+                    </h4>
+
+                    <p style={{ fontSize: '12px', color: 'var(--color-muted)', marginTop: '4px', lineHeight: 1.4 }}>
+                      {lesson.summary}
+                    </p>
+                  </div>
+
+                  {/* Action arrow */}
+                  {!isLocked && (
+                    <ChevronRight size={18} color={isCurrent ? "var(--color-signal)" : "var(--color-muted)"} />
+                  )}
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Lesson Details Bottom Card / Modal */}
+      {activeModalLesson && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(0, 0, 0, 0.75)',
+            backdropFilter: 'blur(10px)',
+            zIndex: 200,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '16px'
+          }}
+          onClick={() => setActiveModalLesson(null)}
+        >
+          <div
+            className="pcb-card"
+            style={{
+              maxWidth: '520px',
+              width: '100%',
+              padding: '28px',
+              background: 'var(--color-surface)',
+              border: '2px solid var(--color-signal)'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
+              <span className="chip-tag chip-tag-signal">{activeModalLesson.chapter}</span>
+              <span style={{ fontSize: '12px', fontFamily: 'var(--font-mono)', color: 'var(--color-amber)', fontWeight: 700 }}>
+                +{activeModalLesson.xpReward} XP
+              </span>
+            </div>
+
+            <h3 style={{ fontSize: '22px', fontWeight: 900, color: '#ffffff', marginBottom: '8px' }}>
+              {activeModalLesson.title}
+            </h3>
+
+            <p style={{ fontSize: '14px', color: 'var(--color-muted)', lineHeight: 1.6, marginBottom: '20px' }}>
+              {activeModalLesson.summary}
+            </p>
+
+            <div style={{
+              background: 'var(--color-surface-2)',
+              border: '1px solid var(--color-line)',
+              borderRadius: '8px',
+              padding: '12px',
+              fontSize: '12px',
+              fontFamily: 'var(--font-mono)',
+              color: 'var(--color-text)',
+              marginBottom: '24px'
+            }}>
+              <div>// LESSON BEATS (PRD 9.1):</div>
+              <div style={{ color: 'var(--color-muted)', marginTop: '4px' }}>
+                1. Concept Hook → 2. Live Interactive Simulation → 3. Quick Check → 4. Break & Fix Dojo → 5. Recap Card
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
+              <button
+                onClick={() => setActiveModalLesson(null)}
+                className="btn-tactile-surface"
+              >
+                Close
+              </button>
+              <button
+                onClick={() => {
+                  const id = activeModalLesson.id;
+                  setActiveModalLesson(null);
+                  onSelectLesson(id);
+                }}
+                className="btn-tactile-signal"
+              >
+                <Play size={15} fill="currentColor" />
+                <span>Start Lesson Now →</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+

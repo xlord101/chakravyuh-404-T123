@@ -1,8 +1,8 @@
 {
-  "name": "chakravyuh-2026",
+  "name": "sparkpath-entc",
   "private": true,
   "version": "1.0.0",
-  "description": "Chakravyuh 2026 - Flagship National Technical Symposium by Dept. of E&TC",
+  "description": "SparkPath: Smart ENTC Learning & Innovation Platform (Chakravyuh AI Vibe Coding Challenge)",
   "type": "module",
   "scripts": {
     "dev": "vite",

@@ -1,0 +1,343 @@
+/* ==========================================================================
+   CHAKRAVYUH 2026 // DITTO-INSPIRED DESIGN SYSTEM & RETRO-TECH TOKENS
+   Department of Electronics & Telecommunication Engineering (E&TC)
+   ========================================================================== */
+
+:root {
+  /* Surfaces & Paper (Ditto Natural Mint-Sage aesthetic) */
+  --bg-page: #e7f4ec;
+  --bg-surface: #ffffff;
+  --bg-surface-2: #eef7f1;
+  --bg-surface-muted: #d9ecdf;
+
+  /* Screen / Dark Oscilloscope (Hardware Canvas & Terminal sections) */
+  --screen-bg: #0c2334;
+  --screen-bg-2: #0e2a3d;
+  --screen-bg-elevated: #133951;
+  --screen-ink: #e9f7f3;
+  --screen-dim: #7fa6a8;
+  --screen-muted: #53757e;
+
+  /* Lines & Borders */
+  --line-soft: #c5e0d7;
+  --line-medium: #a8cfc4;
+  --line-screen: #1f4763;
+  --line-screen-accent: #2e668b;
+
+  /* Ink / Text */
+  --ink-primary: #0e2a3d;
+  --ink-secondary: #3c5b6a;
+  --ink-faint: #5e7d8c;
+  --ink-inverse: #ffffff;
+
+  /* Accents & Signals */
+  --color-teal: #14b3ad;
+  --color-teal-deep: #0c8a86;
+  --color-mint: #6fe9e2;
+  --color-gold: #f0ac1b;
+  --color-gold-hover: #d99914;
+  --color-coral: #ef5f5f;
+  --color-violet: #8c73ff;
+
+  /* Typography */
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Radii & Shadows */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Tactile shadow */
+  --shadow-tactile: 0 4px 0 #1f4763;
+  --shadow-tactile-sm: 0 2px 0 #1f4763;
+  --shadow-light-tactile: 0 4px 0 #c5e0d7;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-sans);
+  background-color: var(--bg-page);
+  color: var(--ink-primary);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: auto; /* Handled smoothly by Lenis */
+}
+
+body {
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: var(--bg-page);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-page);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line-medium);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-teal);
+}
+
+/* Typography Utility Classes */
+.font-pixel {
+  font-family: var(--font-pixel);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+/* Links & Buttons */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+/* Tactile Push Buttons */
+.btn-tactile-primary {
+  background: var(--color-teal);
+  color: #0c2334;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  border: 1px solid #0c8a86;
+  box-shadow: 0 4px 0 #0c8a86;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn-tactile-primary:hover {
+  background: #17c4be;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 0 #0c8a86;
+}
+.btn-tactile-primary:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #0c8a86;
+}
+
+.btn-tactile-gold {
+  background: var(--color-gold);
+  color: #1a1600;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  border: 1px solid #c98c0b;
+  box-shadow: 0 4px 0 #b37c07;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn-tactile-gold:hover {
+  background: #f8b82a;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 0 #b37c07;
+}
+.btn-tactile-gold:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #b37c07;
+}
+
+.btn-tactile-dark {
+  background: var(--screen-bg-2);
+  color: var(--screen-ink);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 12px 22px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line-screen);
+  box-shadow: 0 4px 0 #071925;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn-tactile-dark:hover {
+  background: var(--screen-bg-elevated);
+  border-color: var(--line-screen-accent);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 0 #071925;
+}
+.btn-tactile-dark:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #071925;
+}
+
+/* Retro Pill Badge */
+.pixel-badge {
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  line-height: 1.4;
+  padding: 4px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: uppercase;
+}
+.pixel-badge-teal {
+  background: rgba(20, 179, 173, 0.15);
+  color: #0c8a86;
+  border: 1px solid rgba(20, 179, 173, 0.4);
+}
+.pixel-badge-gold {
+  background: rgba(240, 172, 27, 0.18);
+  color: #a87200;
+  border: 1px solid rgba(240, 172, 27, 0.45);
+}
+.pixel-badge-coral {
+  background: rgba(239, 95, 95, 0.15);
+  color: #c93b3b;
+  border: 1px solid rgba(239, 95, 95, 0.35);
+}
+.pixel-badge-dark {
+  background: #081926;
+  color: #6fe9e2;
+  border: 1px solid #1f4763;
+}
+
+/* PCB Trace & Grid Patterns */
+.bg-grid-light {
+  background-image: 
+    linear-gradient(to right, rgba(197, 224, 215, 0.4) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(197, 224, 215, 0.4) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.bg-grid-screen {
+  background-image: 
+    linear-gradient(to right, rgba(31, 71, 99, 0.4) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(31, 71, 99, 0.4) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Oscilloscope CRT Scanline effect */
+.crt-overlay {
+  position: relative;
+}
+.crt-overlay::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+  background-size: 100% 4px;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+/* Blinking LED Status Beacon */
+@keyframes beacon-pulse {
+  0% { transform: scale(0.95); opacity: 0.7; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.7; }
+}
+.beacon-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #14b3ad;
+  box-shadow: 0 0 10px #6fe9e2, 0 0 20px #14b3ad;
+  animation: beacon-pulse 2s infinite ease-in-out;
+}
+.beacon-dot-gold {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f0ac1b;
+  box-shadow: 0 0 8px #f0ac1b;
+  animation: beacon-pulse 1.8s infinite ease-in-out;
+}
+
+/* Card Styling inspired by ditto.site */
+.ditto-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 16px rgba(12, 35, 52, 0.04);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ditto-card:hover {
+  border-color: var(--color-teal);
+  box-shadow: 0 8px 28px rgba(20, 179, 173, 0.12);
+  transform: translateY(-2px);
+}
+
+.ditto-card-screen {
+  background: var(--screen-bg-2);
+  border: 1px solid var(--line-screen);
+  border-radius: var(--radius-lg);
+  color: var(--screen-ink);
+  transition: all 0.25s ease;
+}
+.ditto-card-screen:hover {
+  border-color: var(--color-teal);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 16px rgba(20, 179, 173, 0.15);
+}
+
+/* Code & Telemetry Chips */
+.telemetry-chip {
+  background: rgba(12, 35, 52, 0.06);
+  border: 1px solid var(--line-soft);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-secondary);
+}
+
+.telemetry-chip-screen {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line-screen);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--screen-dim);
+}

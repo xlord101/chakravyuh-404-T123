@@ -20,7 +20,8 @@
   --font-display: 'Hanken Grotesk', -apple-system, sans-serif;
   --font-body: 'Hanken Grotesk', -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  --font-pixel: 'Press Start 2P', monospace;
+  --font-pixel: 'Silkscreen', 'Press Start 2P', monospace;
+  --font-arcade: 'Press Start 2P', monospace;
 
   /* Spacing Grid (8px) & Radii (PRD 2.4) */
   --radius-card: 12px;
@@ -312,7 +313,7 @@ html.lenis, html.lenis body {
   animation: char-in 850ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* Keynote Slide Pill Indicator */
+/* Keynote Slide Pill Indicator (Ditto Pixel Aesthetic) */
 .keynote-pill {
   display: inline-flex;
   align-items: center;
@@ -322,10 +323,20 @@ html.lenis, html.lenis body {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(8px);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #a1a1aa;
+}
+
+.font-pixel {
+  font-family: var(--font-pixel);
+  letter-spacing: 0.04em;
+}
+
+.font-arcade {
+  font-family: var(--font-arcade);
+  letter-spacing: 0.02em;
 }
 

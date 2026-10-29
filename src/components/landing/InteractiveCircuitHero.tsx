@@ -35,11 +35,11 @@ export const InteractiveCircuitHero = () => {
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <span className={switchClosed ? "signal-beacon" : "streak-flame"} />
-          <span style={{ color: switchClosed ? '#7CFFB2' : '#71717a', fontWeight: 600 }}>
+          <span className="font-pixel" style={{ color: switchClosed ? '#7CFFB2' : '#71717a', fontWeight: 600, fontSize: '9px' }}>
             {switchClosed ? 'CIRCUIT ENERGIZED // 5.0V DC' : 'OPEN CIRCUIT // NO CURRENT'}
           </span>
         </div>
-        <span className="keynote-pill" style={{ padding: '3px 8px', fontSize: '10px' }}>
+        <span className="keynote-pill font-pixel" style={{ padding: '3px 8px', fontSize: '9px' }}>
           LIVE SCHEMATIC
         </span>
       </div>
@@ -117,19 +117,18 @@ export const InteractiveCircuitHero = () => {
         </svg>
 
         {switchClosed && (
-          <div style={{
+          <div className="font-pixel" style={{
             position: 'absolute',
             top: '8px',
             right: '10px',
-            fontSize: '9px',
-            fontFamily: 'var(--font-mono)',
+            fontSize: '8px',
             color: '#7CFFB2',
             display: 'flex',
             alignItems: 'center',
             gap: '4px',
             letterSpacing: '0.04em'
           }}>
-            <Zap size={11} />
+            <Zap size={10} />
             <span>CURRENT FLOWING</span>
           </div>
         )}
@@ -145,10 +144,10 @@ export const InteractiveCircuitHero = () => {
         {/* Toggle Switch Button */}
         <button
           onClick={() => setSwitchClosed(!switchClosed)}
-          className={switchClosed ? "btn-tactile-signal" : "btn-tactile-surface"}
-          style={{ width: '100%', padding: '10px 12px', fontSize: '12px' }}
+          className={switchClosed ? "btn-tactile-signal font-pixel" : "btn-tactile-surface font-pixel"}
+          style={{ width: '100%', padding: '10px 12px', fontSize: '9px' }}
         >
-          <Power size={14} />
+          <Power size={13} />
           <span>{switchClosed ? 'SW: CLOSED' : 'SW: OPEN'}</span>
         </button>
 
@@ -162,7 +161,7 @@ export const InteractiveCircuitHero = () => {
           flexDirection: 'column',
           justifyContent: 'center'
         }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'var(--font-mono)', color: '#a1a1aa' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '9px', color: '#a1a1aa' }} className="font-pixel">
             <span>RESISTOR</span>
             <span style={{ color: '#5CC8FF', fontWeight: 700 }}>{resistorValue} Ω</span>
           </div>
@@ -179,7 +178,7 @@ export const InteractiveCircuitHero = () => {
       </div>
 
       {/* Live Readout Bar */}
-      <div style={{
+      <div className="font-pixel" style={{
         background: 'rgba(0, 0, 0, 0.45)',
         border: '1px solid rgba(255, 255, 255, 0.06)',
         borderRadius: '6px',
@@ -187,8 +186,7 @@ export const InteractiveCircuitHero = () => {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        fontFamily: 'var(--font-mono)',
-        fontSize: '11px'
+        fontSize: '9px'
       }}>
         <div>
           <span style={{ color: '#71717a' }}>V_IN: </span>

@@ -593,4 +593,3 @@ export const REAL_WORLD_MISSIONS: Mission[] = [
     xpReward: 80
   }
 ];
-

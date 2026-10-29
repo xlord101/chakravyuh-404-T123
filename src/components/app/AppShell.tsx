@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Compass, Cpu, Bug, Target, User, Zap, Sparkles } from 'lucide-react';
+import { Compass, Cpu, Bug, Target, User, Sparkles } from 'lucide-react';
 import type { AppView, SparkUserState } from '../../store/useSparkStore';
 
 interface AppShellProps {
@@ -46,28 +46,23 @@ export const AppShell = ({
         justifyContent: 'space-between',
         alignItems: 'center'
       }}>
-        {/* Brand Logo */}
+        {/* Brand Wordmark (Logo removed per user instruction) */}
         <div
           onClick={() => onNavigate('landing')}
-          style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}
+          style={{ display: 'flex', alignItems: 'baseline', gap: '8px', cursor: 'pointer', userSelect: 'none' }}
         >
-          <div style={{
-            width: '28px',
-            height: '28px',
-            borderRadius: '6px',
-            background: 'rgba(124, 255, 178, 0.15)',
-            border: '1px solid var(--color-signal)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'var(--color-signal)'
-          }}>
-            <Zap size={16} />
-          </div>
-          <span style={{ fontWeight: 800, fontSize: '17px', color: '#ffffff', letterSpacing: '-0.02em' }}>
-            ENI<span style={{ color: 'var(--color-signal)' }}>GMA</span>
+          <span
+            className="font-pixel"
+            style={{
+              fontWeight: 700,
+              fontSize: '15px',
+              color: '#ffffff',
+              letterSpacing: '0.08em',
+            }}
+          >
+            ENIGMA
           </span>
-          <span className="chip-tag chip-tag-signal hidden sm:inline" style={{ fontSize: '9px' }}>
+          <span className="font-pixel chip-tag chip-tag-signal hidden sm:inline" style={{ fontSize: '8px' }}>
             SMART ENTC
           </span>
         </div>

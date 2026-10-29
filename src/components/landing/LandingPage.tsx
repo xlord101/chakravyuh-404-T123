@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { useScroll, useTransform } from 'framer-motion';
 import {
-  Zap,
   Cpu,
   Bug,
   Activity,
@@ -278,49 +277,38 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
             borderRadius: '999px',
           }}
         >
-          {/* Brand Logo */}
+          {/* Brand Wordmark (Logo removed per user instruction) */}
           <div
             onClick={() => scrollToSlide(0)}
             style={{
               display: 'flex',
-              alignItems: 'center',
-              gap: '10px',
+              alignItems: 'baseline',
+              gap: '8px',
               cursor: 'pointer',
               userSelect: 'none',
             }}
           >
-            <div
+            <span
+              className="font-pixel"
               style={{
-                width: '30px',
-                height: '30px',
-                borderRadius: '8px',
-                background: 'rgba(124, 255, 178, 0.12)',
-                border: '1px solid rgba(124, 255, 178, 0.35)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#7CFFB2',
+                fontSize: '15px',
+                fontWeight: 700,
+                color: '#ffffff',
+                letterSpacing: '0.08em',
               }}
             >
-              <Zap size={16} />
-            </div>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
-              <span style={{ fontSize: '16px', fontWeight: 800, letterSpacing: '-0.03em', color: '#ffffff' }}>
-                ENIGMA
-              </span>
-              <span
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '9px',
-                  letterSpacing: '0.08em',
-                  color: '#71717a',
-                  textTransform: 'uppercase',
-                }}
-                className="hidden sm:inline"
-              >
-                // SMART ENTC
-              </span>
-            </div>
+              ENIGMA
+            </span>
+            <span
+              className="font-pixel hidden sm:inline"
+              style={{
+                fontSize: '8px',
+                color: '#71717a',
+                letterSpacing: '0.1em',
+              }}
+            >
+              // SMART ENTC
+            </span>
           </div>
 
           {/* Keynote Slide Jump Pills */}
@@ -329,8 +317,6 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
               display: 'none',
               alignItems: 'center',
               gap: '6px',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '11px',
             }}
             className="md:flex"
           >
@@ -338,6 +324,7 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
               <button
                 key={s.id}
                 onClick={() => scrollToSlide(idx)}
+                className="font-pixel"
                 style={{
                   padding: '5px 12px',
                   borderRadius: '999px',
@@ -345,7 +332,7 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
                   borderColor: activeSlideIndex === idx ? 'rgba(124, 255, 178, 0.4)' : 'transparent',
                   background: activeSlideIndex === idx ? 'rgba(124, 255, 178, 0.08)' : 'transparent',
                   color: activeSlideIndex === idx ? '#7CFFB2' : '#a1a1aa',
-                  fontWeight: activeSlideIndex === idx ? 600 : 400,
+                  fontSize: '9px',
                   cursor: 'pointer',
                   transition: 'all 0.2s ease',
                 }}
@@ -411,13 +398,13 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
                 boxShadow: '0 0 8px #7CFFB2',
               }}
             />
-            <span style={{ color: '#ffffff', fontWeight: 600 }}>
+            <span className="font-pixel" style={{ color: '#ffffff', fontWeight: 600, fontSize: '9px' }}>
               DISASSEMBLY FRAME {currentFrameDisplay.toString().padStart(3, '0')} / {TOTAL_FRAMES} • {loadedCount >= TOTAL_FRAMES ? '100% CACHED' : `${Math.round((loadedCount / TOTAL_FRAMES) * 100)}% BUFFERED`}
             </span>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <span className="hidden sm:inline" style={{ color: '#71717a' }}>
+            <span className="font-pixel hidden sm:inline" style={{ color: '#71717a', fontSize: '9px' }}>
               CHAKRAVYUH 2026 // KEYNOTE
             </span>
             <div
@@ -486,9 +473,9 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
                 </span>
               </div>
 
-              {/* Editorial Staggered Title (Inspired by Portfolio HeroTitleMorph) */}
+              {/* Editorial Pixelated Staggered Title (ditto.site aesthetic) */}
               <h1
-                className="text-[clamp(44px,7vw,92px)] font-extrabold tracking-[-0.07em] text-white leading-[0.92] mb-5 select-none"
+                className="font-pixel text-[clamp(36px,5.8vw,78px)] font-bold text-white leading-[1.0] mb-5 select-none tracking-[0.06em]"
               >
                 {Array.from('ENIGMA').map((char, i) => (
                   <span
@@ -644,8 +631,8 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
                   gap: '14px',
                 }}
               >
-                <div style={{ fontSize: '22px', fontWeight: 800, color: '#FF5C6C', fontFamily: 'var(--font-mono)' }}>
-                  2 Hrs
+                <div className="font-pixel" style={{ fontSize: '18px', fontWeight: 700, color: '#FF5C6C' }}>
+                  2 HRS
                 </div>
                 <div>
                   <div style={{ fontSize: '13px', fontWeight: 700, color: '#ffffff' }}>Lab Bottleneck</div>
@@ -664,8 +651,8 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
                   gap: '14px',
                 }}
               >
-                <div style={{ fontSize: '22px', fontWeight: 800, color: '#FFB84D', fontFamily: 'var(--font-mono)' }}>
-                  ₹15k
+                <div className="font-pixel" style={{ fontSize: '18px', fontWeight: 700, color: '#FFB84D' }}>
+                  ₹15K
                 </div>
                 <div>
                   <div style={{ fontSize: '13px', fontWeight: 700, color: '#ffffff' }}>Hardware Cost Barrier</div>
@@ -684,7 +671,7 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
                   gap: '14px',
                 }}
               >
-                <div style={{ fontSize: '22px', fontWeight: 800, color: '#5CC8FF', fontFamily: 'var(--font-mono)' }}>
+                <div className="font-pixel" style={{ fontSize: '18px', fontWeight: 700, color: '#5CC8FF' }}>
                   78%
                 </div>
                 <div>
@@ -883,7 +870,7 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
                   padding: '14px',
                 }}
               >
-                <div style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#5CC8FF', marginBottom: '4px' }}>
+                <div className="font-pixel" style={{ fontSize: '10px', color: '#5CC8FF', marginBottom: '6px' }}>
                   BEAT 01
                 </div>
                 <div style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
@@ -902,7 +889,7 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
                   padding: '14px',
                 }}
               >
-                <div style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#7CFFB2', marginBottom: '4px' }}>
+                <div className="font-pixel" style={{ fontSize: '10px', color: '#7CFFB2', marginBottom: '6px' }}>
                   BEAT 02
                 </div>
                 <div style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
@@ -921,7 +908,7 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
                   padding: '14px',
                 }}
               >
-                <div style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#FF5C6C', marginBottom: '4px' }}>
+                <div className="font-pixel" style={{ fontSize: '10px', color: '#FF5C6C', marginBottom: '6px' }}>
                   BEAT 03
                 </div>
                 <div style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
@@ -940,7 +927,7 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
                   padding: '14px',
                 }}
               >
-                <div style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#FFB84D', marginBottom: '4px' }}>
+                <div className="font-pixel" style={{ fontSize: '10px', color: '#FFB84D', marginBottom: '6px' }}>
                   BEAT 04
                 </div>
                 <div style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
@@ -1041,7 +1028,7 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
               >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
                   <Cpu size={20} color="#7CFFB2" />
-                  <span style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#7CFFB2' }}>LIVE</span>
+                  <span className="font-pixel" style={{ fontSize: '9px', color: '#7CFFB2' }}>LIVE</span>
                 </div>
                 <div style={{ fontSize: '15px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
                   Logic Gate Builder
@@ -1066,7 +1053,7 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
               >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
                   <Terminal size={20} color="#FFB84D" />
-                  <span style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#FFB84D' }}>AVR C++</span>
+                  <span className="font-pixel" style={{ fontSize: '9px', color: '#FFB84D' }}>AVR C++</span>
                 </div>
                 <div style={{ fontSize: '15px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
                   Arduino IDE & Telemetry
@@ -1091,7 +1078,7 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
               >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
                   <Bug size={20} color="#FF5C6C" />
-                  <span style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#FF5C6C' }}>FORENSICS</span>
+                  <span className="font-pixel" style={{ fontSize: '9px', color: '#FF5C6C' }}>FORENSICS</span>
                 </div>
                 <div style={{ fontSize: '15px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
                   Debug Dojo Forensics
@@ -1116,7 +1103,7 @@ export const LandingPage = ({ onStartLearning }: LandingPageProps) => {
               >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
                   <Activity size={20} color="#5CC8FF" />
-                  <span style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#5CC8FF' }}>WEB AUDIO</span>
+                  <span className="font-pixel" style={{ fontSize: '9px', color: '#5CC8FF' }}>WEB AUDIO</span>
                 </div>
                 <div style={{ fontSize: '15px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
                   Signal Scope & Audio
